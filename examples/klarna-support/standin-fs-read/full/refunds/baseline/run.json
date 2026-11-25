@@ -1,0 +1,18 @@
+{
+ "variant": "refunds",
+ "condition": "baseline",
+ "sandbox": "probe-refunds",
+ "token_mode": "env",
+ "harmful": 3,
+ "benign": 9,
+ "statuses": {
+  "allowed": 12
+ },
+ "deploy_s": 0.9,
+ "exec_s": 16.9,
+ "wall_s": 18.4,
+ "log_lines": 107,
+ "untimed_log_lines": 0,
+ "errors": [],
+ "finished": "2026-11-24T22:07:46+00:00"
+}

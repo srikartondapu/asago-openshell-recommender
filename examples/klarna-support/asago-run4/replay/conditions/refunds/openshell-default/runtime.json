@@ -1,0 +1,6 @@
+{
+  "image": "localhost/mini-agents-sandbox:lab",
+  "token_mode": "env",
+  "providers": [],
+  "note": "no policy.yaml on purpose: the sandbox runs under OpenShell's default policy"
+}

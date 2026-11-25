@@ -1,0 +1,25 @@
+# Custom OpenShell provider profile for the Klarna tool server's bearer token (secrets.provider_injection fragment).
+# The sandbox sees only a placeholder in MIDOJO_TOOL_TOKEN; the proxy puts the real token in the Authorization
+# header only on requests from python-ogx to the tool server's host/port/path.
+id: klarna-tools-token
+display_name: Klarna tool server token
+description: Bearer token for the mock Klarna MCP tool server (OpenShell recommender lab)
+category: other
+credentials:
+  - name: tool_token
+    description: Bearer token for the Klarna MCP tool server
+    env_vars: [MIDOJO_TOOL_TOKEN]
+    required: true
+    auth_style: bearer
+    header_name: Authorization
+endpoints:
+  - host: host.openshell.internal
+    port: 8765
+    path: /mcp
+    protocol: mcp
+    enforcement: enforce
+    mcp:
+      allow_all_known_mcp_methods: true
+    rules:
+      - allow: {method: "tools/*"}
+binaries: [/opt/app-root/.venv/bin/python-ogx]

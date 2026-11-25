@@ -1,0 +1,10 @@
+# filtered: lines used by the demo generator
+2026-11-20T11:16:02 INFO     [asago_scenario_generator.pipeline.candidates] Entry point filter: 7/9 entry points are attacker-accessible (2 excluded: output-only or system-controlled)
+2026-11-20T11:16:02 WARNING  [asago_scenario_generator.pipeline.candidates] Seed AP-T6-06 has no technique IDs (ATLAS or LAAF) — skipping
+2026-11-20T11:16:02 WARNING  [asago_scenario_generator.pipeline.candidates] Seed AP-T6-07 has no technique IDs (ATLAS or LAAF) — skipping
+2026-11-20T11:16:02 WARNING  [asago_scenario_generator.pipeline.candidates] Seed AP-T17-03 has no technique IDs (ATLAS or LAAF) — skipping
+2026-11-20T11:16:02 WARNING  [asago_scenario_generator.pipeline.candidates] Seed AP-T17-04 has no technique IDs (ATLAS or LAAF) — skipping
+2026-11-20T11:16:02 WARNING  [asago_scenario_generator.pipeline.candidates] Seed AP-T3-05 has no technique IDs (ATLAS or LAAF) — skipping
+2026-11-20T11:16:02 WARNING  [asago_scenario_generator.pipeline.candidates] Seed AP-T3-06 has no technique IDs (ATLAS or LAAF) — skipping
+2026-11-20T11:16:02 INFO     [asago_scenario_generator.pipeline.candidates] Rule pre-filter: 99/329 candidates rejected, 230 passed to LLM filter
+2026-11-20T11:16:02 INFO     [asago_scenario_generator.pipeline.runner_run]   Rule pre-filter: 99/329 candidates rejected, 230 passed to LLM

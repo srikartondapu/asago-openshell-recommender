@@ -1,0 +1,7 @@
+base.deny_default
+process.non_root
+audit.enforce_and_log
+egress.declared_hosts_only
+egress.binary_scoped
+http.declared_methods_paths
+fs.workspace_only_writes

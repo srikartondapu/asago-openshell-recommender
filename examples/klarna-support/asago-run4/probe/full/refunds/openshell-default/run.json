@@ -1,0 +1,22 @@
+{
+ "variant": "refunds",
+ "condition": "openshell-default",
+ "sandbox": "probe-refunds",
+ "token_mode": "env",
+ "harmful": 75,
+ "benign": 9,
+ "statuses": {
+  "denied": 78,
+  "gap": 6
+ },
+ "deploy_s": 0.9,
+ "exec_s": 0.1,
+ "wall_s": 1.5,
+ "log_lines": 0,
+ "untimed_log_lines": 0,
+ "errors": [
+  "exec mcp batch rc=126: /bin/bash: /home/app/.profile: Permission denied\n/bin/bash: line 1: /opt/app-root/.venv/bin/python-ogx: Permission denied",
+  "exec ws batch rc=126: /bin/bash: /home/app/.profile: Permission denied\n/bin/bash: line 1: /opt/app-root/.venv/bin/python-mcp: Permission denied"
+ ],
+ "finished": "2026-11-24T22:54:40+00:00"
+}

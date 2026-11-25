@@ -1,0 +1,2 @@
+# filtered: only the coverage classification line
+INFO  asago_artifact_generator.garak.gen: Classified scenario:v2:2b60bf46c025f56032b8108644f8d3f1d5a18a5b0b5a0acb58493f014e779aed injection_surface=user_turn coverage=partial

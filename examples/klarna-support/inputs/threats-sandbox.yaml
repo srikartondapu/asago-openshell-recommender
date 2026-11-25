@@ -1,0 +1,401 @@
+# OWASP agentic threats v1.1 reduced to the threats an OpenShell sandbox policy can address.
+# Same method as asago-demo worker.prepare_demo_scope (filter the `threats` map); pass via --threats-path.
+source:
+  name: OWASP Agentic AI - Threats and Mitigations
+  version: '1.1'
+  date: 2025-12
+  publisher: OWASP Agentic Security Initiative (ASI)
+  url: https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/
+  license: CC BY-SA 4.0
+decision_tree:
+- step: 1
+  question: Does the AI agent independently determine the steps needed to achieve
+    its goals?
+  threat_category: Threats rooted in agency and reasoning
+  threats:
+  - T6
+  - T7
+  - T8
+- step: 2
+  question: Does the AI agent rely on stored memory for decision-making?
+  threat_category: Memory-based threats
+  threats:
+  - T1
+  - T5
+- step: 3
+  question: Does the AI agent execute actions using tools, system commands, or external
+    integrations?
+  threat_category: Tool, execution and supply chain-based threats
+  threats:
+  - T2
+  - T3
+  - T4
+  - T11
+  - T16
+  - T17
+- step: 4
+  question: Does the AI system rely on authentication to verify users, tools, or services?
+  threat_category: Authentication and spoofing threats
+  threats:
+  - T9
+- step: 5
+  question: Does AI require human engagement to achieve its goals or function effectively?
+  threat_category: Human related threats
+  threats:
+  - T10
+  - T15
+- step: 6
+  question: Does the AI system rely on multiple interacting agents?
+  threat_category: Multi-agent system threats
+  threats:
+  - T12
+  - T13
+  - T14
+playbooks:
+- id: playbook-1
+  name: Preventing AI Agent Reasoning Manipulation
+  mitigates:
+  - T6
+  - T7
+  - T8
+  decision_tree_step: 1
+- id: playbook-2
+  name: Preventing Memory Poisoning & AI Knowledge Corruption
+  mitigates:
+  - T1
+  - T5
+  decision_tree_step: 2
+- id: playbook-3
+  name: Securing AI Tool Execution & Preventing Unauthorized Actions Across Supply
+    Chains
+  mitigates:
+  - T2
+  - T3
+  - T4
+  - T11
+  - T16
+  - T17
+  decision_tree_step: 3
+- id: playbook-4
+  name: Strengthening Authentication, Identity & Privilege Controls
+  mitigates:
+  - T3
+  - T9
+  - T16
+  decision_tree_step: 4
+- id: playbook-5
+  name: Protecting HITL & Preventing Threats Rooted in Human Interaction
+  mitigates:
+  - T10
+  - T15
+  decision_tree_step: 5
+- id: playbook-6
+  name: Securing Multi-Agent Communication & Trust Mechanisms
+  mitigates:
+  - T12
+  - T13
+  - T14
+  decision_tree_step: 6
+threats:
+  T1:
+    id: T1
+    name: Memory Poisoning
+    description: 'Memory Poisoning exploits AI agents'' reliance on short-term and
+      long-term memory, allowing attackers to corrupt stored information, bypass security
+      checks, and manipulate decision-making. Short-term memory attacks exploit context
+      limitations, causing agents to repeat sensitive operations or load manipulated
+      data, while long-term memory risks involve injecting false information across
+      sessions, corrupting knowledge bases, exposing sensitive data, and enabling
+      privilege escalation. The attack is possible via direct prompt injections for
+      isolated memory or exploiting shared memory allowing users to affect other users.
+
+      '
+    decision_tree_step: 2
+    category: Memory-based threats
+    is_new_to_agentic: true
+    llm_top10_refs:
+    - id: LLM04
+      name: Data and Model Poisoning
+      relationship: extends beyond static data poisoning to real-time poisoning of
+        persistent agent memory
+    - id: LLM08
+      name: Vector and Embedding Weaknesses
+      relationship: vector databases storing long-term embeddings introduce additional
+        risks
+    mitigations:
+    - Implement memory content validation and automated scanning for anomalies in
+      candidate memory insertions
+    - Session isolation ensuring AI does not carry over unintended knowledge across
+      user sessions
+    - Robust authentication mechanisms for memory access
+    - Anomaly detection systems for unexpected memory updates
+    - Regular memory sanitization routines
+    - AI-generated memory snapshots for forensic analysis and rollback
+    - Restrict memory persistence to trusted sources with cryptographic validation
+    - Limit memory retention durations based on sensitivity
+    - Require source attribution for memory updates
+    - 'Pre-commit validation: multi-agent/external validation before persisting memory
+      changes'
+    - Probabilistic truth-checking against trusted sources before committing to long-term
+      storage
+    scenarios:
+    - id: T1-S1
+      name: Travel Booking Memory Poisoning
+      description: 'An attacker repeatedly reinforces a false pricing rule in an AI
+        travel agent''s memory, making it register chartered flights as free, allowing
+        unauthorized bookings and bypassing payment validation.
+
+        '
+    - id: T1-S2
+      name: Context Window Exploitation
+      description: 'By fragmenting interactions over multiple sessions, an attacker
+        exploits an AI''s memory limit, preventing it from recognizing privilege escalation
+        attempts, ultimately gaining unauthorized admin access.
+
+        '
+    - id: T1-S3
+      name: Memory Poisoning for System
+      description: 'An attacker gradually alters an AI security system''s memory,
+        training it to misclassify malicious activity as normal, allowing undetected
+        cyberattacks.
+
+        '
+    - id: T1-S4
+      name: Shared Memory Poisoning
+      description: 'In a customer service application, an attacker corrupts shared
+        memory structures with incorrect refund policies, affecting other agents referencing
+        this corrupted memory for decision making, leading to incorrect policy reinforcement,
+        financial loss, and customer disputes.
+
+        '
+  T2:
+    id: T2
+    name: Tool Misuse
+    description: 'Tool Misuse occurs when attackers manipulate AI agents into abusing
+      their authorized tools through deceptive prompts and operational misdirection,
+      leading to unauthorized data access, system manipulation, or resource exploitation
+      while staying within granted permissions. Unlike traditional exploits, this
+      attack leverages AI''s ability to chain tools and execute complex sequences
+      of seemingly legitimate actions, making detection difficult.
+
+      '
+    decision_tree_step: 3
+    category: Tool, execution and supply chain-based threats
+    is_new_to_agentic: false
+    llm_top10_refs:
+    - id: LLM06
+      name: Excessive Agency
+      relationship: partially covered but agentic systems introduce unique risks with
+        dynamic integrations and enhanced autonomy
+    - id: LLM03
+      name: Supply Chain
+      relationship: related when tools come from untrusted sources
+    - id: LLM08
+      name: Vector and Embedding Weaknesses
+      relationship: related when RAG is performed via tools
+    mitigations:
+    - Enforce strict tool access control policies and limit which tools agents can
+      execute
+    - Implement tool rate-limiting and monitor tool usage patterns
+    - Validate agent instructions and set clear operational boundaries
+    - Execution logs tracking AI tool calls for anomaly detection
+    - Pre-execution validation before tool invocation
+    - Use execution sandboxes for AI-driven tool invocations
+    - Just-in-time (JIT) access for AI tool usage
+    - Real-time risk scoring to restrict tool execution when anomalous
+    scenarios:
+    - id: T2-S1
+      name: Parameter Pollution Exploitation
+      description: 'An attacker discovers and manipulates an AI booking system''s
+        function call, tricking it into reserving 500 seats instead of one, causing
+        financial loss.
+
+        '
+    - id: T2-S2
+      name: Tool Chain Manipulation
+      description: 'An attacker exploits an AI customer service agent by chaining
+        tool actions, extracting high-value customer records, and sending them via
+        an automated email system.
+
+        '
+    - id: T2-S3
+      name: Automated Tool Abuse
+      description: 'An AI document processing system is tricked into generating and
+        mass-distributing malicious documents, unknowingly executing a large-scale
+        phishing attack.
+
+        '
+    - id: T2-S4
+      name: Tool Misuse or Agent Hijacking via Memory Poisoning
+      description: 'An attacker injects false information into an AI agent''s persistent
+        memory, causing it to recall and act on manipulated data across sessions,
+        bypassing security checks, and enabling unauthorized actions.
+
+        '
+    - id: T2-S5
+      name: Tool Misuse or Agent Hijacking via Vector Database
+      description: 'An attacker injects adversarially crafted content into a vector
+        database, poisoning the agent''s long-term memory and causing it to retrieve
+        misleading information that drives unsafe or unauthorized decisions.
+
+        '
+    - id: T2-S6
+      name: Tool Misuse or Agent Hijacking by Prompt Injection
+      description: 'An attacker can use prompt injection to manipulate the AI''s goal,
+        leading it to misuse a shell tool and execute a malicious command.
+
+        '
+  T3:
+    id: T3
+    name: Privilege Compromise
+    description: 'Privilege Compromise occurs when attackers exploit mismanaged roles,
+      overly permissive configurations, or dynamic permission inheritance to escalate
+      privileges and misuse AI agents'' access. Unlike traditional systems, AI agents
+      autonomously inherit permissions, creating security blind spots where temporary
+      or inherited privileges can be abused.
+
+      '
+    decision_tree_step: 3
+    category: Tool, execution and supply chain-based threats
+    is_new_to_agentic: false
+    llm_top10_refs:
+    - id: LLM06
+      name: Excessive Agency
+      relationship: partially covered but amplifies privilege escalation risks as
+        agents can dynamically delegate roles
+    mitigations:
+    - Implement granular permission controls
+    - Dynamic access validation
+    - Robust monitoring of role changes
+    - Thorough auditing of elevated privilege operations
+    - Prevent cross-agent privilege delegation unless explicitly authorized
+    scenarios:
+    - id: T3-S1
+      name: Dynamic Permission Escalation
+      description: 'An attacker manipulates an AI agent into invoking temporary administrative
+        privileges under the guise of troubleshooting, then exploits a misconfiguration
+        to persistently retain elevated access and extract sensitive data.
+
+        '
+    - id: T3-S2
+      name: Cross-System Authorization Exploitation
+      description: 'By leveraging an AI agent''s access across multiple corporate
+        systems, an attacker escalates privileges from HR to Finance due to inadequate
+        scope enforcement.
+
+        '
+    - id: T3-S3
+      name: Shadow Agent Deployment
+      description: 'Exploiting weak access controls, an attacker creates a rogue AI
+        agent that inherits legitimate credentials, operating undetected while executing
+        data exfiltration.
+
+        '
+  T6:
+    id: T6
+    name: Intent Breaking & Goal Manipulation
+    description: 'Intent Breaking and Goal Manipulation occurs when attackers exploit
+      the lack of separation between data and instructions in AI agents, using prompt
+      injections, compromised data sources, or malicious tools to alter the agent''s
+      planning, reasoning, and self-evaluation. This allows attackers to override
+      intended objectives and force AI agents to execute unauthorized actions.
+
+      '
+    decision_tree_step: 1
+    category: Threats rooted in agency and reasoning
+    is_new_to_agentic: true
+    llm_top10_refs:
+    - id: LLM01
+      name: Prompt Injection
+      relationship: goal manipulation extends prompt injection risks as attackers
+        can inject adversarial objectives that shift long-term reasoning
+    mitigations:
+    - Implement planning validation frameworks
+    - Boundary management for reflection processes
+    - Dynamic protection mechanisms for goal alignment
+    - AI behavioral auditing by having another model check the agent
+    - Goal consistency validation to detect unintended behavioral shifts
+    - Track goal modification request frequency per agent
+    - Apply behavioral constraints to prevent self-reinforcement loops
+    scenarios:
+    - id: T6-S1
+      name: Gradual Plan Injection
+      description: 'An attacker incrementally modifies an AI agent''s planning framework
+        by injecting subtle sub-goals, leading to gradual drift from original objectives
+        while maintaining the appearance of logical reasoning.
+
+        '
+    - id: T6-S2
+      name: Direct Plan Injection
+      description: 'An attacker instructs a chatbot to ignore its original instructions
+        and instead chain tool executions to perform unauthorized actions such as
+        exfiltrating data or sending unauthorized emails.
+
+        '
+    - id: T6-S3
+      name: Indirect Plan Injection
+      description: 'A maliciously crafted tool output introduces hidden instructions
+        that the AI misinterprets as part of its operational goal, leading to sensitive
+        data exfiltration.
+
+        '
+    - id: T6-S4
+      name: Reflection Loop Trap
+      description: 'An attacker triggers infinite or excessively deep self-analysis
+        cycles in an AI, consuming resources and preventing real-time decisions, effectively
+        paralyzing the system.
+
+        '
+    - id: T6-S5
+      name: Meta-Learning Vulnerability Injection
+      description: 'By manipulating an AI''s self-improvement mechanisms, an attacker
+        introduces learning patterns that progressively alter decision-making integrity.
+
+        '
+  T11:
+    id: T11
+    name: Unexpected RCE and Code Attacks
+    description: 'Unexpected RCE and Code Attacks occur when attackers exploit AI-generated
+      code execution in agentic applications, leading to unsafe code generation, privilege
+      escalation, or direct system compromise. Agentic AI with function-calling capabilities
+      can be directly manipulated to execute unauthorized commands.
+
+      '
+    decision_tree_step: 3
+    category: Tool, execution and supply chain-based threats
+    is_new_to_agentic: false
+    llm_top10_refs:
+    - id: LLM01
+      name: Prompt Injection
+      relationship: agentic AI with function-calling can be manipulated to execute
+        unauthorized commands
+    - id: LLM05
+      name: Insecure Output Handling
+      relationship: agentic AI extends to direct code execution via tool integrations
+    mitigations:
+    - Restrict AI code generation permissions
+    - Sandbox execution environments
+    - Monitor AI-generated scripts
+    - Execution control policies flagging elevated-privilege AI-generated code for
+      manual review
+    scenarios:
+    - id: T11-S1
+      name: DevOps Agent Compromise
+      description: 'An attacker manipulates an AI-powered DevOps agent into generating
+        Terraform scripts containing hidden commands that extract secrets and disable
+        logging.
+
+        '
+    - id: T11-S2
+      name: Workflow Engine Exploitation
+      description: 'An AI-driven workflow automation system executes malicious AI-generated
+        scripts with embedded backdoors, bypassing security validation.
+
+        '
+    - id: T11-S3
+      name: Exploiting Linguistic Ambiguities
+      description: 'An attacker leverages language-based vulnerabilities in a natural
+        language AI email agent to craft ambiguous commands that exfiltrate sensitive
+        emails.
+
+        '

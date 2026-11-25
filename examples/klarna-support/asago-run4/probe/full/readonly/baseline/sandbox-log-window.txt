@@ -1,0 +1,400 @@
+[1795222570.143] [sandbox] [INFO ] [openshell_supervisor] Starting sandbox supervision command=[]
+[1795222570.143] [sandbox] [INFO ] [openshell_sandbox_backend::runtime_initiated] Runtime-initiated Sandbox Protocol listener ready
+[1795222570.255] [sandbox] [INFO ] [openshell_supervisor] Fetching sandbox policy via gRPC endpoint=https://host.containers.internal:17670 sandbox=probe-readonly sandbox_id=d2a47c49-2ea4-4bf3-9fdd-a184c523125e
+[1795222570.263] [sandbox] [INFO ] [openshell_supervisor_network::opa] Configured OPA runtime binary identity mode require_binary_identity=true source=proto
+[1795222570.263] [sandbox] [OCSF ] [ocsf] CONFIG:CONFIGURED [INFO] OPA runtime binary identity mode configured [source:proto require_binary_identity:true] [source:proto]
+[1795222570.266] [sandbox] [OCSF ] [ocsf] CONFIG:DISABLED [INFO] OTLP agent trace relay inactive: not enabled by the gateway
+[1795222570.268] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary attached backend=openshell-sandbox
+[1795222570.268] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary enforcement confirmed backend=openshell-sandbox
+[1795222570.269] [sandbox] [OCSF ] [ocsf] CONFIG:ENABLED [INFO] TLS termination enabled: ephemeral CA generated
+[1795222570.269] [sandbox] [OCSF ] [ocsf] CONFIG:READY [INFO] Policy DNS connected to isolation boundary
+[1795222570.269] [sandbox] [OCSF ] [ocsf] NET:LISTEN [INFO] 127.0.0.1:3128
+[1795222570.269] [sandbox] [WARN ] [openshell_supervisor_network::proxy] host.openshell.internal maps to a non-link-local IP; trusted-gateway SSRF exemption disabled ip=192.168.127.254
+[1795222570.275] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary agent started backend=openshell-sandbox
+[1795222570.275] [sandbox] [OCSF ] [ocsf] SSH:LISTEN [INFO]
+[1795222570.275] [sandbox] [INFO ] [openshell_supervisor] Control-mode access plane started backend=openshell-sandbox
+[1795222570.277] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] host.containers.internal:17670
+[1795222570.281] [sandbox] [OCSF ] [ocsf] CONFIG:LOADED [INFO] Acknowledged initial policy revision as loaded [version:1] [hash:312ffefbfce690f3612f4b21d40f12e1d69d0b19ea610afa1b8009d62b03dd92]
+[1795222570.542] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=78605ea3-77aa-43b9-aed9-e0134b1ae9d8, target=unix:/run/openshell/ssh.sock)
+[1795222570.542] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795222570.556] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=78605ea3-77aa-43b9-aed9-e0134b1ae9d8, target=unix:/run/openshell/ssh.sock)
+[1795222570.685] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=751b37a5-10f5-47d2-bebb-dfc2590e0504, target=unix:/run/openshell/ssh.sock)
+[1795222570.685] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795222570.697] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=751b37a5-10f5-47d2-bebb-dfc2590e0504, target=unix:/run/openshell/ssh.sock)
+[1795222570.827] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=2ec2191f-265e-4470-88aa-e7638c2162f2, target=unix:/run/openshell/ssh.sock)
+[1795222570.827] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795222570.840] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=2ec2191f-265e-4470-88aa-e7638c2162f2, target=unix:/run/openshell/ssh.sock)
+[1795222570.884] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=8afccbda-75f1-400e-af1b-539eaab58309, target=unix:/run/openshell/ssh.sock)
+[1795222570.885] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795222571.270] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=284b4249-30a8-4dd3-90bf-4af4431497fa
+[1795222571.272] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222571.272] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222571.275] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222571.276] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=8980e323-9032-4df1-86b7-f0e5f9758031
+[1795222571.278] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222571.278] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222571.278] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=36f5f3db-b81e-4b60-b079-a357f6622c2d
+[1795222571.280] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222571.280] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222571.283] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222571.286] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222572.826] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=4013d7fd-a1a6-47a6-8cc2-d976f3cec69a
+[1795222572.828] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222572.828] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222572.832] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222572.833] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=8bd6ec06-2087-4bf4-ab1b-e49ca3255114
+[1795222572.834] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222572.836] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222572.837] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=83f154f3-fe79-4aaa-b06e-3e4a9fa6af88
+[1795222572.838] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222572.839] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222572.842] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222572.845] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222574.381] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=8b3e3346-9c5d-440d-be91-ce2cf3d2d6cd
+[1795222574.383] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222574.383] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222574.387] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222574.388] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f5ac0043-79bd-40ed-b7c8-df5d057c1d51
+[1795222574.389] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222574.390] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222574.390] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=d45f4834-42af-40a8-b4fb-fa8821b5ddf4
+[1795222574.392] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222574.392] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222574.396] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222574.399] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222575.941] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=6f7e7175-0b84-4c93-9490-38f0cbd93ee7
+[1795222575.943] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222575.943] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222575.947] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222575.947] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=4965ae4f-75c3-4b43-8a0a-825a6ac7262d
+[1795222575.949] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222575.950] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222575.950] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=2c32306f-565d-4289-95c9-baf2bdde284e
+[1795222575.952] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222575.952] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222575.956] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222575.959] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222577.499] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=524ea5c7-15e1-4b1a-8aef-4475f0167060
+[1795222577.501] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222577.501] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222577.505] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222577.506] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=db788ff2-8289-4874-b606-e0c829ecf847
+[1795222577.508] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222577.509] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222577.509] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=282b4327-d522-46db-a725-fb82ff648f0c
+[1795222577.510] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222577.513] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222577.516] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222577.519] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222579.069] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a84af4e1-b7a5-4c32-a75d-d3f472096868
+[1795222579.071] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222579.071] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222579.075] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222579.076] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=0d7850d5-ca00-47ed-a2b4-ee04c0bf467c
+[1795222579.078] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222579.078] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222579.079] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=87ea55f4-dc5a-4fd5-9c95-209fbb8f4363
+[1795222579.080] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222579.081] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222579.084] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222579.087] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222580.272] [sandbox] [INFO ] [openshell_supervisor] Flushed activity summary to gateway denied_action_count=0 network_activity_count=18 sandbox_name=probe-readonly
+[1795222580.624] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=b086d6fd-58e6-4ceb-851e-e65f9518a60c
+[1795222580.627] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222580.627] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222580.633] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222580.633] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=07f9bac0-0dec-4cf1-994d-03900976cee3
+[1795222580.636] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222580.637] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222580.638] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=acc61176-eeb2-47ee-b562-a2e6c2afc102
+[1795222580.640] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222580.640] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222580.645] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222580.649] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222582.189] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=15f414cc-7f3d-4e10-a259-403334e8c072
+[1795222582.191] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222582.191] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222582.195] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222582.196] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f7c8316c-85df-4316-932b-0fec9bdbec93
+[1795222582.198] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222582.198] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222582.199] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=bb91e71e-ee53-4517-b38d-43f43d0db510
+[1795222582.200] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222582.201] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222582.204] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222582.207] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222583.779] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=b2fccf45-2bfb-4a46-833a-9608badd6260
+[1795222583.791] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222583.792] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222583.810] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222583.815] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=bde272aa-c75a-41e8-a72e-0407280b25da
+[1795222583.823] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222583.824] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222583.825] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a84b3b18-26bc-4405-84dd-5aa92e8d5e55
+[1795222583.828] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222583.830] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222583.839] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222583.847] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222585.394] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=815e3717-1465-42aa-a3db-1bb6d00a38c5
+[1795222585.396] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222585.396] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222585.402] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222585.403] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a1150e46-9089-4b2f-994c-fe1adb997dfb
+[1795222585.405] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222585.405] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222585.406] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=bc40d22a-522d-4783-a5bf-ba509018ecac
+[1795222585.408] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222585.408] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222585.412] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222585.416] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222586.962] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a88335a9-3f7f-410e-b559-070e5cc6b967
+[1795222586.965] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222586.965] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222586.971] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222586.972] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=080fc290-2c00-47ca-9f3b-bce27ed36672
+[1795222586.973] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222586.974] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222586.975] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=fc0eb50b-eb34-4efe-b859-4e1ef53f8a05
+[1795222586.977] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222586.977] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222586.981] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222586.985] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222588.530] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=b22fa556-0357-496c-84a7-dd4de2f845af
+[1795222588.533] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222588.533] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222588.538] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222588.538] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=76a248eb-cfc0-4727-a6f7-0c3c0a20634d
+[1795222588.540] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222588.541] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222588.541] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=56131018-6878-465f-a096-b3fec42c494e
+[1795222588.543] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222588.544] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222588.547] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222588.553] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222590.100] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=9eb6ad88-639f-4ee7-99e5-2471d455caec
+[1795222590.102] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222590.102] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222590.108] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222590.108] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=1c5fb58c-ef53-4c70-b886-5d03311be0fb
+[1795222590.110] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222590.111] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222590.111] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=ee3d0c30-8ea3-42b1-a5de-d510c7e1834a
+[1795222590.113] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222590.113] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222590.117] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222590.120] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222590.276] [sandbox] [INFO ] [openshell_supervisor] Flushed activity summary to gateway denied_action_count=0 network_activity_count=21 sandbox_name=probe-readonly
+[1795222591.663] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=88192a5d-8b89-44ac-affa-bd7f90a8aa58
+[1795222591.665] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222591.665] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222591.669] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222591.669] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=798f5bf5-cc7b-4b2a-9122-0ba36ba26dad
+[1795222591.671] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222591.672] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222591.672] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=9df6d06c-63d8-4d4b-bdd0-803be9956188
+[1795222591.674] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222591.674] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222591.677] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222591.680] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222593.221] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=edbdea48-0b77-41a8-89f6-13b1bd4296bb
+[1795222593.223] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222593.223] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222593.227] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222593.228] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f7e5c681-9382-4416-be62-4acd764298e9
+[1795222593.229] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222593.230] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222593.231] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=53c0e2e9-5fbe-4fdc-9921-148a0772d8f2
+[1795222593.232] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222593.232] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222593.235] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222593.238] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222594.785] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=793dd808-462f-4160-8d7e-e99abf84edcb
+[1795222594.787] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222594.788] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222594.794] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222594.795] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=7250154d-e9ec-4c97-81c8-999b951b5610
+[1795222594.797] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222594.797] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222594.798] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=d0b995ed-d96d-4676-83ec-b751d9d35f5c
+[1795222594.799] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222594.799] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222594.802] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222594.805] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222596.353] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=67e7ea5b-19b8-45bf-bfc2-25b4472368ad
+[1795222596.355] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222596.355] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222596.359] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222596.360] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=d7c9bb1b-eff0-4a88-83c0-c44a6dd4177f
+[1795222596.361] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222596.362] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222596.362] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=754cdbbe-1932-450f-aa5a-98acb9c572fe
+[1795222596.363] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222596.364] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222596.367] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222596.370] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222597.912] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=b0eee3bd-3e5f-4e13-bb57-418972382b0e
+[1795222597.914] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222597.914] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222597.918] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222597.918] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=4560a34a-d420-43c5-b440-2d1ae937ea0e
+[1795222597.920] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222597.920] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222597.921] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=570798ac-b4a6-49e2-b34b-92103ec536a6
+[1795222597.922] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222597.923] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222597.926] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222597.929] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222599.474] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=20164507-a4be-4f91-8770-39f6e587073a
+[1795222599.476] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222599.476] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222599.480] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222599.481] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=be70e676-7c26-4ae2-b3cf-8036b2d467c2
+[1795222599.483] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222599.483] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222599.484] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a556d7bc-82b6-4f95-a047-dbe22cd907fd
+[1795222599.485] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222599.485] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222599.488] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222599.491] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222600.277] [sandbox] [INFO ] [openshell_supervisor] Flushed activity summary to gateway denied_action_count=0 network_activity_count=18 sandbox_name=probe-readonly
+[1795222601.038] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=995e2eab-041d-4cf1-a258-dff4eaeece1d
+[1795222601.041] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222601.041] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222601.046] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222601.047] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=9677ea4d-16e1-4138-902d-6aba9f501aa9
+[1795222601.049] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222601.050] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222601.051] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=7b3cfc80-99b9-4d95-a2f0-bea4d2fec920
+[1795222601.052] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222601.053] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222601.057] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222601.061] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222602.606] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=b212c19b-b2d2-468e-b857-4d74bb3a3e2a
+[1795222602.609] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222602.609] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222602.613] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222602.614] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=82579390-db69-405a-ac64-c1db1fb8dc57
+[1795222602.616] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222602.616] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222602.617] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=bf73d64f-26eb-4f5e-9786-17043725db35
+[1795222602.618] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222602.619] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222602.622] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222602.625] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222604.170] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=c6bd2801-94c5-4baf-8fdd-097eb807b6d3
+[1795222604.172] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222604.172] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222604.177] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222604.177] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=164b554c-3e97-4166-9189-f47fb5084a61
+[1795222604.179] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222604.180] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222604.180] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=2f7de636-f2ba-4cf9-aa09-235fcf844c56
+[1795222604.182] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222604.182] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222604.185] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222604.189] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222605.735] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=fd1a760b-5dab-4768-87ea-e3faa5161876
+[1795222605.737] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222605.737] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222605.741] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222605.742] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f894f596-9c2c-44af-ae8d-c5733c306cb7
+[1795222605.743] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222605.744] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222605.744] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=c19d04ce-f77c-42c9-b633-b0395ab5811a
+[1795222605.746] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222605.746] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222605.749] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222605.754] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222607.297] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f11a3b77-af0d-4364-aa19-aea240442136
+[1795222607.300] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222607.300] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222607.306] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222607.307] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=13c49bb3-27ab-4ba7-b846-a622b4fb7641
+[1795222607.309] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222607.310] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222607.311] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a319be6b-faff-4850-9483-93f9fab1a796
+[1795222607.313] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222607.314] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222607.318] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222607.322] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222608.868] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=05776c44-cce8-430c-a092-1b9655b06654
+[1795222608.870] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222608.870] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222608.874] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222608.875] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=ea30c7fe-c87c-4d8f-981e-90c3fe48f981
+[1795222608.877] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222608.877] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222608.877] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a7f39c12-ce99-4bbb-a24d-71f122927994
+[1795222608.879] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222608.879] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222608.882] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222608.885] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222610.275] [sandbox] [INFO ] [openshell_supervisor] Flushed activity summary to gateway denied_action_count=0 network_activity_count=18 sandbox_name=probe-readonly
+[1795222610.406] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f1989df3-fed3-4114-9f09-c9e6dbc24c56
+[1795222610.408] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222610.408] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222610.412] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222610.413] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=dc23da07-17c2-4ba8-b330-b0bf95d359fd
+[1795222610.415] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222610.416] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222610.416] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=eae3dbef-9953-4568-824b-56757d0847ba
+[1795222610.418] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222610.418] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222610.422] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222610.425] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222611.970] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=66bd730d-88ca-4f55-95de-826a061c7462
+[1795222611.972] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222611.972] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222611.979] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222611.980] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=b4569e5a-2c49-4309-82eb-19dbcf396b0b
+[1795222611.982] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222611.982] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222611.983] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=a8a394b2-c5ba-4c19-937f-2a0ea8330e33
+[1795222611.984] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222611.984] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222611.988] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222611.991] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222613.538] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=3127ce1c-5b35-4f86-b34e-9534f0a51d0a
+[1795222613.540] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222613.541] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222613.545] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222613.546] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f312bdfd-5669-4499-a534-cf2ace9fc50f
+[1795222613.547] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222613.548] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222613.548] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=8a6a7a57-66c3-462b-ad30-c6a888c28883
+[1795222613.550] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222613.550] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222613.553] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222613.556] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222615.097] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=21ca0c4d-acc2-408b-98c8-abd64b7730f2
+[1795222615.099] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222615.099] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222615.103] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222615.104] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=784a3b0e-9c2c-49d1-a0b4-8fdc92c3e686
+[1795222615.106] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222615.106] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222615.107] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=19be59b4-9cbf-4d4a-931e-6b5e614fdcef
+[1795222615.108] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222615.108] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222615.111] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222615.114] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222616.653] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=9d7d5079-231b-40ce-a307-9ca90392ca85
+[1795222616.655] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222616.655] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222616.660] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222616.660] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=f9140888-b9a0-4fbc-b8ba-5c289750d5a6
+[1795222616.662] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222616.663] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222616.663] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=b1b5d805-f394-4ecc-aa72-3edbfa10ca1f
+[1795222616.665] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222616.665] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222616.669] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222616.672] [sandbox] [OCSF ] [ocsf] HTTP:DELETE [INFO] ALLOWED DELETE http://host.openshell.internal:8765/mcp
+[1795222618.223] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=ac96c704-836c-4be1-8b17-9fea847aef02
+[1795222618.226] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222618.226] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222618.230] [sandbox] [OCSF ] [ocsf] HTTP:POST [INFO] ALLOWED POST http://host.openshell.internal:8765/mcp
+[1795222618.231] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=d9af4573-ed45-4c4b-94d9-bbf0a5a83cbf
+[1795222618.233] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /opt/app-root/.venv/bin/python-ogx(0) -> host.openshell.internal:8765 [policy:mcp_klarna_tools engine:opa]
+[1795222618.233] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://host.openshell.internal:8765/mcp
+[1795222618.234] [sandbox] [OCSF ] [ocsf] CONFIG:PUBLISHED [INFO] Policy DNS mapped host.openshell.internal resolved=192.168.127.254 synthetic=198.18.0.2 ports=8765,9101,9102,11434 mapping_id=0852b74e-39d8-4bc0-b63a-99528d7d9b9c

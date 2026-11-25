@@ -1,0 +1,116 @@
+# ASAGO capability profile for the Klarna support agent AS BUILT for the OpenShell recommender prototype
+# (mini-agents clone, branch asago-openshell). Starts from the reviewed
+# asago-scenario-generator/inputs/profiles/klarna-capability-profile.yaml and adds what this agent really has,
+# so the scenario generator does not miss threats:
+#   + generic workstation tools (web fetch, workspace files, shell command)  -> KC6.2.2, KC6.4, KC6.5 (bring in T11)
+#   + merchant shipping API as an external integration whose responses are untrusted tool output
+#     -> indirect entry point into tool_execution (artifact generator emits tool_return attacks)
+# Enforcement details (hosts, ports, binaries) live in sandbox-manifest-*.yaml; nothing threat-relevant is only there.
+zones_active:
+- input
+- reasoning
+- tool_execution
+- memory
+entry_points:
+- name: user prompts via Klarna app and web flow
+  direction: bidirectional
+  controllability: direct
+- name: RAG knowledge-grounding system
+  direction: input
+  controllability: indirect
+  ingress_zone: reasoning
+- name: authenticated customer context injection
+  direction: input
+  controllability: indirect
+  ingress_zone: reasoning
+- name: merchant shipping API responses fetched by the agent
+  entry_point_type: external_content
+  direction: input
+  controllability: indirect
+  ingress_zone: tool_execution
+- name: web content fetched by the agent's web fetch tool
+  entry_point_type: external_content
+  direction: input
+  controllability: indirect
+  ingress_zone: tool_execution
+- name: workspace files read by the agent
+  entry_point_type: external_content
+  direction: input
+  controllability: indirect
+  ingress_zone: tool_execution
+- name: agent memory notes read back into context
+  entry_point_type: other
+  direction: input
+  controllability: indirect
+  ingress_zone: memory
+- name: Klarna backend API integrations for refunds and payments
+  direction: output
+  controllability: system
+- name: human agent escalation triggers
+  direction: output
+  controllability: system
+confidence: high
+kc_subcodes:
+- KC1.1
+- KC2.1
+- KC3.3
+- KC4.3
+- KC5.3
+- KC6.1.2
+- KC6.2.2   # added: run_command executes LLM-chosen shell commands
+- KC6.3.2
+- KC6.3.3
+- KC6.4     # added: http_fetch reaches arbitrary URLs
+- KC6.5     # added: read_file / write_file / list_dir on the sandbox filesystem
+- KCX-HITL
+- KCX-PMEM
+tool_inventory:
+- name: refund processing API
+  description: Processes refunds for customer purchases, adjusting payment schedules and account balances
+- name: payment scheduling API
+  description: Reschedules or adjusts payment due dates for buy-now-pay-later installments
+- name: order lookup API
+  description: Retrieves customer purchase history, order details, item prices, merchant info, and payment status
+- name: account details API
+  description: Accesses authenticated customer account information including payment methods and account status
+- name: human agent escalation
+  description: Transfers the conversation to a human customer service agent when the AI cannot resolve the issue
+- name: RAG knowledge retrieval
+  description: Retrieves relevant support documentation and policy information to ground responses
+- name: shipping status lookup
+  description: Fetches shipment status and carrier notes for an order from the merchant's shipping API over HTTP
+- name: web fetch
+  description: Makes an HTTP request (any method, URL, headers and body) and returns the response
+- name: workspace file access
+  description: Reads, writes and lists files on the agent's runtime filesystem
+- name: shell command execution
+  description: Runs a shell command in the agent's runtime environment and returns its output
+external_integrations:
+- name: Klarna backend payment and refund services
+  integration_type: api
+  auth_method: service_account
+  data_sensitivity: high
+- name: customer purchase and account data store
+  integration_type: api
+  auth_method: service_account
+  data_sensitivity: high
+- name: RAG knowledge base
+  integration_type: api
+  auth_method: service_account
+  data_sensitivity: medium
+- name: merchant shipping API
+  integration_type: api
+  auth_method: none
+  data_sensitivity: low
+trust_boundaries:
+- name: customer-input-to-conversational-reasoning
+  from_zone: input
+  to_zone: reasoning
+  controls:
+  - input validation
+  confidence: explicit
+- name: tool-output-to-conversational-reasoning
+  from_zone: tool_execution
+  to_zone: reasoning
+  controls: []
+  confidence: explicit

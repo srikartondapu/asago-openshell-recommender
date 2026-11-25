@@ -1,0 +1,19 @@
+# NVIDIA OpenShell Policy Prover trial, run 4 read-only policies (Nov 23 2026).
+# Tool: openshell-prover check <candidate> --boundary <boundary>  (installed with OpenShell 0.1.8)
+# Docs: https://docs.nvidia.com/openshell/how-it-works/policies/prover
+# Hand-recorded; rerun to refresh. "as_compiled" = the policies we deploy; "adjusted" = temporary copies with the MCP rule
+# removed and include_workdir=false (prover model limits), NOT deployed.
+tool: openshell-prover check candidate.yaml --boundary boundary.yaml
+what: >-
+  SMT-based proof that the candidate policy allows nothing beyond a boundary policy (filesystem, process identity,
+  Landlock, network binaries/hosts/ports/IPs, REST method+path). Returns one counterexample when it exceeds.
+  It does not generate test commands; MCP, GraphQL, WebSocket and JSON-RPC rules are reported as unsupported.
+as_compiled:
+  - {candidate: least-privilege, boundary: no-policy, result: unsupported, detail: "rule 'mcp_klarna_tools' (MCP tool allowlist) is outside the prover's model"}
+adjusted:
+  - {candidate: no-policy, boundary: least-privilege, result: exceeds_boundary, detail: "counterexample: ANY binary may connect to host.openshell.internal:9101 (merchant API); least privilege allows only the agent's python-mcp"}
+  - {candidate: least-privilege, boundary: no-policy, result: unsupported, detail: "run_as_user changes to 1500 (non-root); needs runtime identity evidence"}
+  - {candidate: earlier attack-selected policy, boundary: least-privilege, result: within_boundary, detail: "proven: the earlier attack-selected policy adds nothing beyond least privilege"}
+takeaway: >-
+  The prover proves the network/filesystem/process parts; our probes cover what it can't: the MCP tool allowlist
+  (where most blocking happens) and real runtime behaviour.

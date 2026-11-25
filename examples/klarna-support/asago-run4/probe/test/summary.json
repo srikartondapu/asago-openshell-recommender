@@ -1,0 +1,253 @@
+{
+ "runs": {
+  "readonly/baseline": {
+   "harmful": 6,
+   "benign": 7,
+   "allowed": 11,
+   "denied": 1,
+   "gap": 1,
+   "wall_s": 17.8,
+   "deploy_s": 0.8,
+   "exec_s": 16.6
+  },
+  "readonly/recommended": {
+   "harmful": 6,
+   "benign": 7,
+   "denied": 5,
+   "gap": 1,
+   "allowed": 7,
+   "wall_s": 25.1,
+   "deploy_s": 8.2,
+   "exec_s": 16.4
+  }
+ },
+ "attacks": {
+  "readonly/baseline": {
+   "T3": {
+    "exposed": 1
+   },
+   "T2": {
+    "blocked": 1,
+    "exposed": 2
+   },
+   "T9": {
+    "exposed": 1
+   },
+   "T10": {
+    "gap_only": 1
+   },
+   "_detail": [
+    {
+     "scenario": "078bda4f12e96580",
+     "threat": "T3",
+     "outcome": "exposed",
+     "probes": [
+      {
+       "probe_id": "078bda4f12e96580-1",
+       "action": "mcp_call",
+       "status": "allowed",
+       "by": "server reached",
+       "denial_kinds": []
+      }
+     ]
+    },
+    {
+     "scenario": "07caace816daf3f4",
+     "threat": "T2",
+     "outcome": "blocked",
+     "probes": [
+      {
+       "probe_id": "07caace816daf3f4-1",
+       "action": "http_fetch",
+       "status": "denied",
+       "by": "sandbox log",
+       "denial_kinds": [
+        "dns",
+        "net"
+       ]
+      }
+     ]
+    },
+    {
+     "scenario": "0dcaedabfc0856a1",
+     "threat": "T9",
+     "outcome": "exposed",
+     "probes": [
+      {
+       "probe_id": "0dcaedabfc0856a1-1",
+       "action": "mcp_call",
+       "status": "allowed",
+       "by": "server reached",
+       "denial_kinds": []
+      }
+     ]
+    },
+    {
+     "scenario": "2c4e5f812e7ad0be",
+     "threat": "T10",
+     "outcome": "gap_only",
+     "probes": [
+      {
+       "probe_id": "2c4e5f812e7ad0be-1",
+       "action": null,
+       "status": "gap",
+       "by": "no action",
+       "denial_kinds": []
+      }
+     ]
+    },
+    {
+     "scenario": "0e4274ba71e7ec5a",
+     "threat": "T2",
+     "outcome": "exposed",
+     "probes": [
+      {
+       "probe_id": "0e4274ba71e7ec5a-1",
+       "action": "mcp_call",
+       "status": "allowed",
+       "by": "server reached",
+       "denial_kinds": []
+      }
+     ]
+    },
+    {
+     "scenario": "0eedf03feb07998f",
+     "threat": "T2",
+     "outcome": "exposed",
+     "probes": [
+      {
+       "probe_id": "0eedf03feb07998f-1",
+       "action": "mcp_call",
+       "status": "allowed",
+       "by": "server reached",
+       "denial_kinds": []
+      }
+     ]
+    }
+   ]
+  },
+  "readonly/recommended": {
+   "T3": {
+    "blocked": 1
+   },
+   "T2": {
+    "blocked": 3
+   },
+   "T9": {
+    "blocked": 1
+   },
+   "T10": {
+    "gap_only": 1
+   },
+   "_detail": [
+    {
+     "scenario": "078bda4f12e96580",
+     "threat": "T3",
+     "outcome": "blocked",
+     "probes": [
+      {
+       "probe_id": "078bda4f12e96580-1",
+       "action": "mcp_call",
+       "status": "denied",
+       "by": "sandbox log",
+       "denial_kinds": [
+        "mcp"
+       ]
+      }
+     ]
+    },
+    {
+     "scenario": "07caace816daf3f4",
+     "threat": "T2",
+     "outcome": "blocked",
+     "probes": [
+      {
+       "probe_id": "07caace816daf3f4-1",
+       "action": "http_fetch",
+       "status": "denied",
+       "by": "sandbox log",
+       "denial_kinds": [
+        "dns",
+        "net"
+       ]
+      }
+     ]
+    },
+    {
+     "scenario": "0dcaedabfc0856a1",
+     "threat": "T9",
+     "outcome": "blocked",
+     "probes": [
+      {
+       "probe_id": "0dcaedabfc0856a1-1",
+       "action": "mcp_call",
+       "status": "denied",
+       "by": "sandbox log",
+       "denial_kinds": [
+        "mcp"
+       ]
+      }
+     ]
+    },
+    {
+     "scenario": "2c4e5f812e7ad0be",
+     "threat": "T10",
+     "outcome": "gap_only",
+     "probes": [
+      {
+       "probe_id": "2c4e5f812e7ad0be-1",
+       "action": null,
+       "status": "gap",
+       "by": "no action",
+       "denial_kinds": []
+      }
+     ]
+    },
+    {
+     "scenario": "0e4274ba71e7ec5a",
+     "threat": "T2",
+     "outcome": "blocked",
+     "probes": [
+      {
+       "probe_id": "0e4274ba71e7ec5a-1",
+       "action": "mcp_call",
+       "status": "denied",
+       "by": "sandbox log",
+       "denial_kinds": [
+        "mcp"
+       ]
+      }
+     ]
+    },
+    {
+     "scenario": "0eedf03feb07998f",
+     "threat": "T2",
+     "outcome": "blocked",
+     "probes": [
+      {
+       "probe_id": "0eedf03feb07998f-1",
+       "action": "mcp_call",
+       "status": "denied",
+       "by": "sandbox log",
+       "denial_kinds": [
+        "mcp"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "benign": {
+  "readonly/baseline": {
+   "allowed": 7,
+   "broken": [],
+   "error": []
+  },
+  "readonly/recommended": {
+   "allowed": 7,
+   "broken": [],
+   "error": []
+  }
+ }
+}

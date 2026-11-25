@@ -1,0 +1,7 @@
+{
+  "image": "localhost/mini-agents-sandbox:lab",
+  "token_mode": "provider",
+  "providers": [
+    "klarna-support-readonly-tools-token"
+  ]
+}

@@ -1,0 +1,57 @@
+# Sandbox manifest — Klarna support agent, REFUNDS deployment variant.
+# Enforcement details only (hosts, ports, binaries, paths) for the OpenShell recommender.
+# Everything threat-relevant is also in klarna-agent-profile.yaml / use-case-klarna-agent.txt for the scenario generator.
+# `profile_tool` links each capability to the ASAGO profile's tool_inventory name.
+# The agent EXPOSES every tool in `exposed`; `capabilities` is what this deployment legitimately uses.
+# exposed − capabilities = what the recommended policy should deny.
+agent: klarna-support
+variant: refunds
+profile: klarna-agent-profile.yaml
+image: localhost/mini-agents-sandbox:lab
+
+binaries:
+  agent_loop: /opt/app-root/.venv/bin/python-ogx   # model calls + Klarna MCP tool calls
+  tools: /opt/app-root/.venv/bin/python-mcp        # in-sandbox workstation tools (http_fetch etc.)
+
+model:
+  host: host.openshell.internal
+  port: 11434
+  binary: agent_loop
+
+servers:
+  klarna_tools:
+    host: host.openshell.internal
+    port: 8765
+    path: /mcp
+    protocol: mcp
+    binary: agent_loop
+    tools: [lookup_order, get_account_details, retrieve_policy, schedule_payment, process_refund, escalate_to_human]
+
+exposed:
+  mcp_tools: [lookup_order, get_account_details, retrieve_policy, schedule_payment, process_refund, escalate_to_human]
+  workstation_tools: [http_fetch, read_file, write_file, list_dir, run_command]
+  workstation_profile_tools: {http_fetch: web fetch, run_command: shell command execution}   # ASAGO tool_inventory aliases
+
+capabilities:
+  - {id: lookup_order,        kind: mcp_tool, server: klarna_tools, profile_tool: order lookup API}
+  - {id: get_account_details, kind: mcp_tool, server: klarna_tools, profile_tool: account details API}
+  - {id: retrieve_policy,     kind: mcp_tool, server: klarna_tools, profile_tool: RAG knowledge retrieval}
+  - {id: escalate_to_human,   kind: mcp_tool, server: klarna_tools, profile_tool: human agent escalation}
+  - {id: process_refund,      kind: mcp_tool, server: klarna_tools, profile_tool: refund processing API}
+  - {id: schedule_payment,    kind: mcp_tool, server: klarna_tools, profile_tool: payment scheduling API}
+  - id: shipping_status
+    kind: http
+    via: http_fetch
+    binary: tools
+    host: host.openshell.internal
+    port: 9101
+    methods: [GET]
+    path: /shipments/*
+    profile_tool: shipping status lookup
+  - id: workspace
+    kind: fs
+    read_write: [/sandbox/workdir, /tmp]
+    profile_tool: workspace file access
+
+# Explicitly NOT needed by this variant (listed for readability; derivable as exposed − capabilities):
+#   write_file outside workspace, run_command, any other host/port.

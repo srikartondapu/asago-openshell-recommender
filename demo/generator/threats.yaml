@@ -1,0 +1,20 @@
+# OWASP Agentic AI threat list (T1-T17) with expected coverage by layer.
+# openshell / guardrails: strong | partial | none. "measured" notes come from the run-4 direct probes.
+# Hand-maintained; reviewed against docs/recommender-design.md layer-complementarity findings.
+T1:  {name: Memory Poisoning, openshell: partial, guardrails: partial, note: "Sandbox limits where memory can be written; guardrails screen what is stored."}
+T2:  {name: Tool Misuse, openshell: strong, guardrails: strong, note: "OpenShell blocks undeclared tools/hosts; misuse of allowed tools needs guardrails. Measured read-only: 30→9 exposed."}
+T3:  {name: Privilege Compromise, openshell: strong, guardrails: partial, note: "Least-privilege tool allowlist removes the privileged tool. Measured read-only: 8→0 exposed."}
+T4:  {name: Resource Overload, openshell: none, guardrails: partial, note: "No rate/resource quotas in OpenShell 0.1.8 policy."}
+T5:  {name: Cascading Hallucination Attacks, openshell: none, guardrails: partial, note: "Content correctness — not a sandbox concern."}
+T6:  {name: Intent Breaking & Goal Manipulation, openshell: partial, guardrails: strong, note: "Guardrails detect injection; OpenShell limits the blast radius of a hijacked agent."}
+T7:  {name: Misaligned & Deceptive Behaviors, openshell: partial, guardrails: partial, note: "Sandbox caps what a misaligned agent can touch."}
+T8:  {name: Repudiation & Untraceability, openshell: partial, guardrails: none, note: "OpenShell audit log records every allowed/denied action."}
+T9:  {name: Identity Spoofing & Impersonation, openshell: partial, guardrails: partial, note: "Provider-injected credentials + allowlist. Measured read-only: 10→0 exposed (refund tool not reachable)."}
+T10: {name: Overwhelming Human in the Loop, openshell: none, guardrails: partial, note: "Mostly content/escalation abuse. Measured: 4 with actions on allowed tools, 6 content-only → guardrails."}
+T11: {name: Unexpected RCE and Code Attacks, openshell: strong, guardrails: partial, note: "Process/filesystem/network confinement of executed code."}
+T12: {name: Agent Communication Poisoning, openshell: partial, guardrails: partial, note: "Restricts which agents/endpoints can be reached."}
+T13: {name: Rogue Agents in Multi-Agent Systems, openshell: partial, guardrails: none, note: "Each agent confined to its declared capabilities."}
+T14: {name: Human Attacks on Multi-Agent Systems, openshell: none, guardrails: partial, note: "Social/content attacks across agents."}
+T15: {name: Human Manipulation, openshell: none, guardrails: strong, note: "Manipulating the human via output — guardrails. Measured: the 1 run-4 attack's egress was already denied by default."}
+T16: {name: Insecure Inter-Agent Protocol Abuse, openshell: strong, guardrails: none, note: "MCP L7 rules: method/tool allowlists on the protocol itself."}
+T17: {name: Supply Chain Compromise, openshell: strong, guardrails: none, note: "A malicious dependency is still confined by egress/filesystem policy."}

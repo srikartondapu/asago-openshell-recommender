@@ -1,0 +1,4 @@
+
+--stderr--
+/bin/bash: /home/app/.profile: Permission denied
+/bin/bash: line 1: /opt/app-root/.venv/bin/python-ogx: Permission denied

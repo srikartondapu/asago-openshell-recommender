@@ -1,0 +1,7 @@
+threat_id,effect,gap_count
+T2,call_declared_tool_bad_args,19
+T2,exec_local_command,9
+T3,call_declared_tool_bad_args,8
+T9,call_declared_tool_bad_args,10
+T10,call_declared_tool_bad_args,4
+T10,harmful_output_only,6

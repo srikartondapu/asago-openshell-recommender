@@ -1,0 +1,5 @@
+# Paths and defaults that every sandbox needs to run at all (read by compile.py and tagger.py).
+# Not part of any agent's manifest.
+system_read_only: [/usr, /lib, /proc, /dev/urandom, /etc, /var/log, /opt]   # needed to run anything
+system_read_write: [/dev/null, /dev/shm]                                     # /dev/shm: python multiprocessing (OGX)
+default_uid: "1500"                                                          # used when the manifest sets no uid

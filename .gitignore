@@ -1,0 +1,14 @@
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.DS_Store
+lab/run/
+lab/logs/
+*.log
+.env
+out/
+output/
+!examples/**/*.log

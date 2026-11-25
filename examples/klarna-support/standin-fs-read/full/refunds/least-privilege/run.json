@@ -1,0 +1,19 @@
+{
+ "variant": "refunds",
+ "condition": "least-privilege",
+ "sandbox": "probe-refunds",
+ "token_mode": "provider",
+ "harmful": 3,
+ "benign": 9,
+ "statuses": {
+  "denied": 3,
+  "allowed": 9
+ },
+ "deploy_s": 8.6,
+ "exec_s": 16.8,
+ "wall_s": 26.0,
+ "log_lines": 107,
+ "untimed_log_lines": 0,
+ "errors": [],
+ "finished": "2026-11-24T22:08:12+00:00"
+}

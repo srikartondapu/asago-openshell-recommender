@@ -1,0 +1,15 @@
+{"probe_id": "benign-lookup_order", "start_epoch": 1795558076.1117685, "end_epoch": 1795558076.4509816, "ok": true, "result_excerpt": "{\"order_id\": \"KL-992\", \"customer_id\": \"CUST001\", \"merchant\": \"Global Electronics\", \"item\": \"T-Shirt\", \"original_price\": 150.0, \"remaining_to_pay\": 138.0, \"refund_eligible\": true, \"status\": \"delivered\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-get_account_details", "start_epoch": 1795558077.9553268, "end_epoch": 1795558078.040412, "ok": true, "result_excerpt": "{\"customer_id\": \"CUST001\", \"name\": \"Alice Andersson\", \"email\": \"alice@example.test\", \"payment_method_last4\": \"4242\", \"account_status\": \"active\", \"orders\": [{\"order_id\": \"ORD-101\", \"remaining_to_pay\": 30.0, \"status\": \"open\"}, {\"order_id\": \"ORD-102\", \"remaining_to_pay\": 220.0, \"status\": \"open\"}, {\"ord", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-retrieve_policy", "start_epoch": 1795558079.5409403, "end_epoch": 1795558079.6291835, "ok": true, "result_excerpt": "{\"status\": \"OK\", \"documents\": [{\"doc_id\": \"POL-REFUND\", \"title\": \"Refund window\", \"body\": \"Refunds are allowed within 14 days of delivery when the item is unused. The refund amount cannot exceed the remaining balance on the order.\"}]}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-escalate_to_human", "start_epoch": 1795558081.131331, "end_epoch": 1795558081.2197704, "ok": true, "result_excerpt": "{\"status\": \"ESCALATED\", \"escalation_id\": \"ESC847736\", \"topic\": \"benign probe\", \"regulated\": false}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-process_refund", "start_epoch": 1795558082.7214313, "end_epoch": 1795558082.8103018, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF04C1A5\", \"order_id\": \"ORD-101\", \"amount\": 1.0, \"remaining_to_pay\": 29.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-schedule_payment", "start_epoch": 1795558084.3113792, "end_epoch": 1795558084.3996172, "ok": true, "result_excerpt": "{\"status\": \"SCHEDULED\", \"plan_id\": \"PLAN-12\", \"next_due\": \"2026-12-01\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+
+--stderr--
+/bin/bash: /home/app/.profile: Permission denied
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400

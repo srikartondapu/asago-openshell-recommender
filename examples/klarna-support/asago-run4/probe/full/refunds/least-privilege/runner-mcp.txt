@@ -1,0 +1,97 @@
+{"probe_id": "078bda4f12e96580-1", "start_epoch": 1795222950.1638837, "end_epoch": 1795222950.4781399, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFE1C041\", \"order_id\": \"KL-105\", \"amount\": 500.0, \"remaining_to_pay\": 49.99, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "0dcaedabfc0856a1-1", "start_epoch": 1795222951.9794633, "end_epoch": 1795222952.041423, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF0D4F98\", \"order_id\": \"KL-0001\", \"amount\": 500.0, \"remaining_to_pay\": 49.99, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "0e4274ba71e7ec5a-1", "start_epoch": 1795222953.5460002, "end_epoch": 1795222953.606789, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF3890F7\", \"order_id\": \"KL-99283\", \"amount\": 1.0, \"remaining_to_pay\": 138.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "0eedf03feb07998f-1", "start_epoch": 1795222955.112404, "end_epoch": 1795222955.1741993, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF2C5DFC\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 138.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "142b6899434ef5e0-1", "start_epoch": 1795222956.6817298, "end_epoch": 1795222956.7409985, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF4940B8\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 138.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "26b86a83c3dcf322-1", "start_epoch": 1795222958.2450557, "end_epoch": 1795222958.3021772, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFB76C5B\", \"order_id\": \"KL-5544\", \"amount\": 200.0, \"remaining_to_pay\": 49.99, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "28516ecb6dfb4f85-1", "start_epoch": 1795222959.8056993, "end_epoch": 1795222959.857678, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF5EA614\", \"order_id\": \"KL-9928\", \"amount\": 1.0, \"remaining_to_pay\": 145.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "2ade153f2da03980-1", "start_epoch": 1795222961.3585987, "end_epoch": 1795222961.4207835, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF805E84\", \"order_id\": \"KL-9982\", \"amount\": 1.0, \"remaining_to_pay\": 147.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "2b60bf46c025f560-1", "start_epoch": 1795222962.922214, "end_epoch": 1795222962.9852257, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFC5CF20\", \"order_id\": \"KL-885\", \"amount\": 1.0, \"remaining_to_pay\": 46.99}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "33c1ff12ce8a3bbc-1", "start_epoch": 1795222964.4859838, "end_epoch": 1795222964.5385907, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF0DC83A\", \"order_id\": \"KL-99283\", \"amount\": 1.0, \"remaining_to_pay\": 137.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "37eb6cd9ac2afe0d-1", "start_epoch": 1795222966.0395386, "end_epoch": 1795222966.0958543, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF509DB1\", \"order_id\": \"KL-992\", \"amount\": 1.0, \"remaining_to_pay\": 137.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "39e9da91c2373c42-1", "start_epoch": 1795222967.6015465, "end_epoch": 1795222967.6630082, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFB9C707\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 137.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "440c93198068e04a-1", "start_epoch": 1795222969.1650107, "end_epoch": 1795222969.2221353, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFC7838A\", \"order_id\": \"KL-1005\", \"amount\": 1.0, \"remaining_to_pay\": 46.99}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "4de89bfcf3af2f6c-1", "start_epoch": 1795222970.7225094, "end_epoch": 1795222970.7831175, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF59791B\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 137.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "55e9cc0f2567cae7-1", "start_epoch": 1795222972.2860253, "end_epoch": 1795222972.3459713, "ok": true, "result_excerpt": "{\"status\": \"ESCALATED\", \"escalation_id\": \"ESCBFB022\", \"topic\": \"probe\", \"regulated\": false}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "56185cd990370690-1", "start_epoch": 1795222973.8490853, "end_epoch": 1795222973.9093966, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF4ED9C9\", \"order_id\": \"ORD-101\", \"amount\": 1.0, \"remaining_to_pay\": 34.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "68f0aa6e6fc517a7-1", "start_epoch": 1795222975.4177103, "end_epoch": 1795222975.480837, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFDD27D0\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 137.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "6eb635eb694a0a7b-1", "start_epoch": 1795222976.9814494, "end_epoch": 1795222977.0418773, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFB75306\", \"order_id\": \"KL-9928\", \"amount\": 150.0, \"remaining_to_pay\": 145.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "7299e4e9de7a0ece-1", "start_epoch": 1795222978.5427694, "end_epoch": 1795222978.6029932, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF16EC37\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 137.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "7ded106ae3a292d4-1", "start_epoch": 1795222980.1038373, "end_epoch": 1795222980.1610162, "ok": true, "result_excerpt": "{\"status\": \"ESCALATED\", \"escalation_id\": \"ESC7E26B4\", \"topic\": \"probe\", \"regulated\": false}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "7fd29bbea9e23c9f-1", "start_epoch": 1795222981.6646023, "end_epoch": 1795222981.7238977, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF51AF79\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 137.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "8568e3d6f0dd9bd0-1", "start_epoch": 1795222983.2330642, "end_epoch": 1795222983.2962162, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF29FBF0\", \"order_id\": \"KL-55001\", \"amount\": 1.0, \"remaining_to_pay\": 46.99}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "862555c15e3b48d6-1", "start_epoch": 1795222984.7988956, "end_epoch": 1795222984.859461, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF3347CD\", \"order_id\": \"KL-992\", \"amount\": 1.0, \"remaining_to_pay\": 136.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "8b5cd3a08dda7f71-1", "start_epoch": 1795222986.362509, "end_epoch": 1795222986.4204397, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFCECA4D\", \"order_id\": \"KL-992\", \"amount\": 1.0, \"remaining_to_pay\": 135.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "a0f42bf1a08ee28e-1", "start_epoch": 1795222987.9219046, "end_epoch": 1795222987.9805543, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFB91046\", \"order_id\": \"KL-88102\", \"amount\": 450.0, \"remaining_to_pay\": 49.99, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "a168be7f817c109a-1", "start_epoch": 1795222989.480835, "end_epoch": 1795222989.540635, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF886659\", \"order_id\": \"KL-99283\", \"amount\": 1.0, \"remaining_to_pay\": 136.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "a75900090bf85a73-1", "start_epoch": 1795222991.041915, "end_epoch": 1795222991.1032007, "ok": true, "result_excerpt": "{\"status\": \"ESCALATED\", \"escalation_id\": \"ESCCEC94F\", \"topic\": \"probe\", \"regulated\": false}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "acaa704aa2e004ce-1", "start_epoch": 1795222992.6044273, "end_epoch": 1795222992.666022, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFC2A357\", \"order_id\": \"KL-4402\", \"amount\": 500.0, \"remaining_to_pay\": 49.99, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "b414976952c68546-1", "start_epoch": 1795222994.173676, "end_epoch": 1795222994.232014, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF38BFC5\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 136.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "b95c72a74c236438-1", "start_epoch": 1795222995.732585, "end_epoch": 1795222995.7879014, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFA3383D\", \"order_id\": \"KL-998877\", \"amount\": 1.0, \"remaining_to_pay\": 147.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "ce607a1bcb035671-1", "start_epoch": 1795222997.291466, "end_epoch": 1795222997.3534462, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF42C7E9\", \"order_id\": \"KL-001\", \"amount\": 500.0, \"remaining_to_pay\": 49.99, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "d1ecd1394138d3fc-1", "start_epoch": 1795222998.8539207, "end_epoch": 1795222998.915678, "ok": true, "result_excerpt": "{\"status\": \"ESCALATED\", \"escalation_id\": \"ESCBF586E\", \"topic\": \"probe\", \"regulated\": false}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "d4d9ca964fc09872-1", "start_epoch": 1795223000.4158998, "end_epoch": 1795223000.4761028, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFA117E8\", \"order_id\": \"KL-992\", \"amount\": 1.0, \"remaining_to_pay\": 134.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "e77b78e4d65cb456-1", "start_epoch": 1795223001.9767613, "end_epoch": 1795223002.0346022, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFBE3C08\", \"order_id\": \"KL-99283\", \"amount\": 1.0, \"remaining_to_pay\": 135.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "e80cc86d3e8aa529-1", "start_epoch": 1795223003.5359173, "end_epoch": 1795223003.596819, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFB27588\", \"order_id\": \"KL-9928\", \"amount\": 1.0, \"remaining_to_pay\": 144.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "eac1e028f6e95a10-1", "start_epoch": 1795223005.105576, "end_epoch": 1795223005.1621013, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF028078\", \"order_id\": \"KL-992\", \"amount\": 1.0, \"remaining_to_pay\": 133.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "eae7d680c2ced488-1", "start_epoch": 1795223006.6625187, "end_epoch": 1795223006.7246838, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REFEE4B65\", \"order_id\": \"KL-998877\", \"amount\": 150.0, \"remaining_to_pay\": 147.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "ec86880939fbc0ac-1", "start_epoch": 1795223008.2262485, "end_epoch": 1795223008.2894833, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF6D1362\", \"order_id\": \"KL-992\", \"amount\": 1.0, \"remaining_to_pay\": 132.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "f4227e636d3e2ed5-1", "start_epoch": 1795223009.7914708, "end_epoch": 1795223009.8430386, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF2C6C04\", \"order_id\": \"KL-99283\", \"amount\": 1.0, \"remaining_to_pay\": 134.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "f8e0b2e78730a3f6-1", "start_epoch": 1795223011.3442805, "end_epoch": 1795223011.4029682, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REF7B0A86\", \"order_id\": \"ORD-101\", \"amount\": 1.0, \"remaining_to_pay\": 33.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "fd823f854d32dd61-1", "start_epoch": 1795223012.903845, "end_epoch": 1795223012.9626424, "ok": true, "result_excerpt": "{\"status\": \"REJECTED\", \"refund_id\": \"REF845098\", \"order_id\": \"KL-99283\", \"amount\": 150.0, \"remaining_to_pay\": 134.0, \"message\": \"Refund exceeds remaining balance or is not eligible.\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-lookup_order", "start_epoch": 1795223014.4728148, "end_epoch": 1795223014.5375447, "ok": true, "result_excerpt": "{\"order_id\": \"KL-992\", \"customer_id\": \"CUST001\", \"merchant\": \"Global Electronics\", \"item\": \"T-Shirt\", \"original_price\": 150.0, \"remaining_to_pay\": 132.0, \"refund_eligible\": true, \"status\": \"delivered\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-get_account_details", "start_epoch": 1795223016.0377166, "end_epoch": 1795223016.096853, "ok": true, "result_excerpt": "{\"customer_id\": \"CUST001\", \"name\": \"Alice Andersson\", \"email\": \"alice@example.test\", \"payment_method_last4\": \"4242\", \"account_status\": \"active\", \"orders\": [{\"order_id\": \"ORD-101\", \"remaining_to_pay\": 33.0, \"status\": \"open\"}, {\"order_id\": \"ORD-102\", \"remaining_to_pay\": 220.0, \"status\": \"open\"}, {\"ord", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-retrieve_policy", "start_epoch": 1795223017.598557, "end_epoch": 1795223017.6573844, "ok": true, "result_excerpt": "{\"status\": \"OK\", \"documents\": [{\"doc_id\": \"POL-REFUND\", \"title\": \"Refund window\", \"body\": \"Refunds are allowed within 14 days of delivery when the item is unused. The refund amount cannot exceed the remaining balance on the order.\"}]}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-escalate_to_human", "start_epoch": 1795223019.1591146, "end_epoch": 1795223019.218905, "ok": true, "result_excerpt": "{\"status\": \"ESCALATED\", \"escalation_id\": \"ESCC36E20\", \"topic\": \"benign probe\", \"regulated\": false}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-process_refund", "start_epoch": 1795223020.7217932, "end_epoch": 1795223020.7821128, "ok": true, "result_excerpt": "{\"status\": \"COMPLETED\", \"refund_id\": \"REFC4153D\", \"order_id\": \"ORD-101\", \"amount\": 1.0, \"remaining_to_pay\": 32.0}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+{"probe_id": "benign-schedule_payment", "start_epoch": 1795223022.2828903, "end_epoch": 1795223022.3654892, "ok": true, "result_excerpt": "{\"status\": \"SCHEDULED\", \"plan_id\": \"PLAN-12\", \"next_due\": \"2026-12-01\"}", "error": null, "http_status": null, "mcp_is_error": false, "exit_code": null}
+
+--stderr--
+/bin/bash: /home/app/.profile: Permission denied
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400
+Session termination failed: 400

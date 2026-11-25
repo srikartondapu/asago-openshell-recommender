@@ -1,0 +1,13 @@
+{
+ "variant": "refunds",
+ "condition": "no-sandbox",
+ "image": "localhost/mini-agents-sandbox:lab",
+ "statuses": {
+  "allowed": 67,
+  "unenforced": 9,
+  "denied": 2,
+  "gap": 6
+ },
+ "wall_s": 119.8,
+ "finished": "2026-11-24T21:58:58+00:00"
+}

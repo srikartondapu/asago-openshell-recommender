@@ -1,0 +1,20 @@
+{
+ "variant": "readonly",
+ "condition": "baseline",
+ "sandbox": "probe-readonly",
+ "token_mode": "env",
+ "harmful": 77,
+ "benign": 7,
+ "statuses": {
+  "allowed": 61,
+  "denied": 17,
+  "gap": 6
+ },
+ "deploy_s": 0.9,
+ "exec_s": 118.3,
+ "wall_s": 119.7,
+ "log_lines": 677,
+ "untimed_log_lines": 0,
+ "errors": [],
+ "finished": "2026-11-21T00:58:09+00:00"
+}

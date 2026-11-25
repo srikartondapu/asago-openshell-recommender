@@ -1,0 +1,235 @@
+<!doctype html>
+<!-- Click-through check for the OpenShell recommender demo. Loaded by scripts/check.sh in headless Chrome.
+     Runs all stages, opens every stage and tab, asserts the Validate numbers, filters, the stand-in attack and the
+     absence of "fragment" / "No policy" / "Permissive sandbox" (stage 4) in the text, switches the condition, plays blocked / exposed / content-only / stand-in
+     attacks, "Play all" and "Play good actions" at 16x, then the guided demo,
+     toggles the theme and records JS errors, empty panels, suspicious text and missing elements. -->
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<pre id="out">running</pre>
+<iframe id="f" src="../demo/index.html#speed=16" style="width:1400px;height:900px"></iframe>
+<script>
+const out = document.getElementById("out");
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+const BAD = [/\bundefined\b/, /\bNaN\b/, /\[object Object\]/];
+
+async function main() {
+  const f = document.getElementById("f");
+  for (let t = 0; t < 200; t++) {
+    if (f.contentDocument && f.contentDocument.getElementById("run-all") && f.contentDocument.querySelector("#pipeline .stage")) break;
+    await wait(100);
+  }
+  const w = f.contentWindow, d = f.contentDocument;
+  const errors = [], problems = [], views = [];
+  w.addEventListener("error", (e) => errors.push(String(e.message)));
+  w.addEventListener("unhandledrejection", (e) => errors.push("unhandled rejection: " + String(e.reason)));
+  const origErr = w.console.error;
+  w.console.error = (...a) => { errors.push(a.map(String).join(" ")); origErr.apply(w.console, a); };
+  const q = (s) => d.querySelector(s), qa = (s) => [...d.querySelectorAll(s)];
+  const need = (cond, msg) => { if (!cond) problems.push(msg); };
+  const setSel = async (id, v) => { const el = q("#" + id); el.value = v; el.dispatchEvent(new Event("change", { bubbles: true })); await wait(20); };
+  const idle = async (what) => { for (let t = 0; t < 4000; t++) { const r = q("#sb-root"); if (r && r.dataset.busy === "0") return true; await wait(50); } problems.push(`${what}: animation did not finish`); return false; };
+  const checkText = (where) => {
+    qa("#results details").forEach((x) => (x.open = true));
+    const text = q("#results").innerText || "";
+    views.push(where);
+    if (text.trim().length < 40) problems.push(`${where}: empty panel`);
+    for (const re of BAD) { const m = text.match(re); if (m) problems.push(`${where}: "${m[0]}" near "${text.slice(Math.max(0, m.index - 40), m.index + 30).replace(/\s+/g, " ")}"`); }
+    for (const s of qa(".sb-svg text")) if (/undefined|NaN/.test(s.textContent)) problems.push(`${where}: svg text "${s.textContent}"`);
+  };
+
+  const tests_ok = (body) => { const r = body().map((tr) => tr.cells[3].innerText.trim()); const rank = { fail: 0, pass: 1, "not provable": 2 }; return r.every((x, k) => k === 0 || rank[r[k - 1]] <= rank[x]); };
+
+  // run all stages
+  q("#run-all").click();
+  for (let t = 0; t < 400; t++) { if (qa("#pipeline .stage[data-status=completed]").length === 4) break; await wait(200); }
+  need(qa("#pipeline .stage[data-status=completed]").length === 4, "stages did not all complete");
+
+  const stages = qa("#pipeline [data-act=sel]").length;
+  const info = {};
+  const SB = 73; // 71 ASAGO run 4 attacks + the hand-written stand-in + the token deployment check (SECRET-1)
+  need(!q("#variant-select") && !/variant/i.test(q(".context-strip").innerText), "variant selector should be gone");
+  for (let s = 0; s < stages; s++) {
+    qa("#pipeline [data-act=sel]")[s].click(); await wait(20);
+    const tabs = qa("#subtabs [data-act=tab]").length;
+    need(tabs >= 3, `stage ${s + 1}: ${tabs} sub-tabs`);
+    need(s !== 3 || tabs === 4, `stage 4 should have 4 sub-tabs, has ${tabs}`);
+    for (let t = 0; t < tabs; t++) {
+      qa("#subtabs [data-act=tab]")[t].click(); await wait(20);
+      const tn = qa("#subtabs [data-act=tab]")[t].dataset.tab;
+      checkText(`stage ${s + 1} | ${tn}`);
+      const txt = q("#results").innerText;
+      if (/fragment/i.test(txt) || /fragment/i.test(q(".result-heading").innerText) || /fragment/i.test(q("#pipeline").innerText)) problems.push(`stage ${s + 1} | ${tn}: user-facing text mentions "fragment"`);
+      if (s === 3 && /Permissive sandbox/i.test(txt)) problems.push(`stage 4 | ${tn}: mentions "Permissive sandbox"`);
+      if (/No policy/.test(txt)) problems.push(`stage ${s + 1} | ${tn}: baseline called "No policy"`);
+      if (s === 2) { // attack picker: first, middle, last attack
+        const n = qa("#results button[data-act=attack]").length;
+        need(n === 71, `attack picker has ${n} attacks`);
+        for (const a of [0, Math.floor(n / 2), n - 1]) { qa("#results button[data-act=attack]")[a].click(); await wait(10); checkText(`stage 3 | ${tn} | attack ${a + 1}`); }
+        if (tn === "baseline") need(/what the agent can do with no sandbox/i.test(txt) && !/Permissive/i.test(txt), "stage 3 baseline tab: no-sandbox wording missing");
+      }
+      if (s === 3 && tn === "policy") {
+        need(qa("#results table tbody tr").length >= 8, "policy tab: README table rows missing");
+        need(q("pre.yaml").textContent.length > 300, "policy tab: yaml empty");
+        need(/OpenShell denies everything not listed/.test(txt), "policy tab: note missing");
+        need(/process_refund/.test(txt) && /python-ogx/.test(txt), "policy tab: MCP allowlist missing");
+        need(!/secret|bearer|MIDOJO/i.test(q("#results").innerText.replace(/secrets\b[^\n]*/gi, "")), "policy tab: secret-looking text");
+        need(/Before → after/.test(txt) && /Protection gained/.test(txt) && /Policy diff/.test(txt), "policy tab: before/after, protection gained or policy diff missing");
+        const ba = {};
+        qa("#results table.ba-table tbody tr").forEach((tr) => { const c = [...tr.cells].map((x) => x.innerText.trim()); ba[c[0]] = c.slice(1); });
+        need(JSON.stringify(ba["Bad actions denied"]) === JSON.stringify(["2/78", "72/78", "22/78"]), "policy tab: before/after bad actions " + JSON.stringify(ba["Bad actions denied"]));
+        need(!!q("table.ba-table th.after"), "policy tab: After column not emphasised");
+        need(JSON.stringify(ba["Good actions allowed"]) === JSON.stringify(["9/9", "0/9", "9/9"]), "policy tab: good actions row " + JSON.stringify(ba["Good actions allowed"]));
+        need(!!q("table.ba-table td.broken") && q("table.ba-table td.broken").innerText.trim() === "0/9", "policy tab: OpenShell default 0/9 not marked");
+        need(/The default is safe because it blocks everything, including the agent\. The recommendation keeps the agent working \(9\/9\)/.test(txt), "policy tab: sentence under table missing");
+        need(/OpenShell default policy \(observed\)/.test(q("#results").textContent) && /include_workdir: true/.test(q("#results").textContent), "policy tab: observed default policy missing");
+        const gained = qa("#results .gbar").length;
+        need(gained === 5, `policy tab: ${gained} protection-gained bars, expected 5`);
+        need(/0\/14\s*→\s*14\/14/.test(txt) && /0\/1\s*→\s*1\/1/.test(txt) && /2\/2\s*→\s*2\/2/.test(txt), "policy tab: protection gained numbers missing");
+        need(qa("pre.diff .dl.add").length > 5 && qa("pre.diff .dl.del").length >= 1, "policy tab: diff lines not tinted");
+        info.diff_lines = { add: qa("pre.diff .dl.add").length, del: qa("pre.diff .dl.del").length };
+      }
+      if (s === 3 && tn === "validate") {
+        need(/good actions allowed 9\/9/.test(txt), "validate: 'good actions allowed 9/9' missing");
+        const rows = {};
+        qa("#results .vcard:nth-of-type(3) tbody tr").forEach((tr) => { const c = [...tr.cells].map((x) => x.innerText.trim()); rows[c[0]] = [c[1], c[2], c[3]]; });
+        const exp = { "Good actions allowed": ["9/9", "0/9", "9/9"], "Bad actions denied": ["2/78", "72/78", "22/78"], "Attacks fully blocked": ["1/73", "67/73", "17/73"], "Attacks with an action still allowed": ["66", "0", "50"], "Text-only attacks (nothing to block)": ["6", "6", "6"] };
+        for (const k in exp) need(rows[k] && JSON.stringify(rows[k]) === JSON.stringify(exp[k]), `validate probes row "${k}": ${JSON.stringify(rows[k])} != ${JSON.stringify(exp[k])}`);
+        info.validate = rows;
+        need(/No sandbox \(before\)/.test(txt) && /OpenShell default/.test(txt) && /Recommended \(after\)/.test(txt) && !/Permissive sandbox/i.test(txt), "validate: condition column headers missing");
+        const body = () => qa("#results .vcard:nth-of-type(2) tbody tr");
+        const total = body().length;
+        need(total === 36, `prover table has ${total} rows, expected 36`);
+        info.prover_rows = total;
+        const m = txt.match(/(\d+) \/ (\d+)\s*\n?\s*pass \(good \/ bad\)/);
+        need(!!m && m[1] === "3" && m[2] === "16", "validate: prover pass counts should be 3 / 16");
+        need(body()[0].innerText.indexOf("not provable") < 0 || tests_ok(body), "prover rows not sorted");
+        q('[data-act=pfilter][data-v=pass]').click(); await wait(10);
+        need(body().length === 19 && body().every((tr) => /pass/.test(tr.cells[3].innerText)), "prover pass filter wrong");
+        q('[data-act=pfilter][data-v=not_provable]').click(); await wait(10);
+        need(body().length === 17, "prover not-provable filter wrong");
+        q('[data-act=pfilter][data-v=all]').click(); await wait(10);
+      }
+      if (s === 3 && tn === "gaps") {
+        need(/hand-written stand-in, not from ASAGO run 4/.test(txt), "gaps: stand-in label missing");
+        const body = () => [...qa("#results table")].pop().querySelectorAll("tbody tr");
+        need(body().length === SB, `gaps table has ${body().length} rows, expected ${SB}`);
+        need(/deployment check, not an attack/.test(txt) && /ASAGO run 4/.test(txt) && /No sandbox \(before\)/.test(txt), "gaps: origin badges or no-sandbox column missing");
+        for (const [k, n] of [["blocked", 17], ["exposed", 50], ["content_only", 6]]) { q(`[data-act=gfilter][data-v=${k}]`).click(); await wait(10); need([...body()].length === n, `gaps filter ${k}: ${body().length} != ${n}`); }
+        q("[data-act=gfilter][data-v=all]").click(); await wait(10);
+      }
+      if (s === 3 && tn === "probe") {
+        need(qa(".sb-node").length >= 13, `sandbox has ${qa(".sb-node").length} nodes`);
+        need(!!q(".sb-svg") && !!q(".sb-boundary") && !!q("#sb-list"), "sandbox svg parts missing");
+        need(!!q('[data-node="mcp:process_refund"].declared'), "process_refund should be declared");
+        for (const c of ["no-sandbox", "openshell-default", "least-privilege"]) {
+          q(`[data-act=cond][data-v="${c}"]`).click(); await wait(20);
+          info[`${c}_locked`] = qa(".sb-node.locked").length;
+          need(q(`[data-act=cond][data-v="${c}"]`).getAttribute("aria-pressed") === "true", "cond button not pressed");
+        }
+        need(info["openshell-default_locked"] >= info["least-privilege_locked"] && info["openshell-default_locked"] >= 13, "openshell default should lock every node");
+        q('[data-act=cond][data-v="openshell-default"]').click(); await wait(20);
+        need(q("#sb-agent").classList.contains("locked") && /agent can't start under the default policy/.test(q("#sb-agent-cap").textContent), "default: agent node not locked / caption missing");
+        q('[data-act=cond][data-v="least-privilege"]').click(); await wait(20);
+        need(!q("#sb-agent").classList.contains("locked"), "agent should not be locked under the recommended policy");
+        await setSel("sb-threat", "T3"); need(qa(".acard").length === 9, "threat filter T3 should list 9 items (8 attacks + the token check)"); await setSel("sb-threat", "");
+        await setSel("sb-threat", "T6"); need(qa(".acard").length === 1 && /stand-in/.test(q(".acard").innerText), "T6 should list the stand-in only"); await setSel("sb-threat", "");
+        need(qa(".acard").length === SB, `all attacks listed (${qa(".acard").length})`);
+        await setSel("sb-speed", "16");
+      }
+    }
+  }
+
+  // no sandbox: boundary label, reached actions open, unenforced explained, the token check readable
+  qa("#pipeline [data-act=sel]")[3].click(); await wait(20);
+  qa("#subtabs [data-act=tab]")[2].click(); await wait(20);
+  await setSel("sb-speed", "16");
+  q('[data-act=cond][data-v="no-sandbox"]').click(); await wait(20);
+  need(q("#sb-t-top").textContent === "no sandbox", "no-sandbox: boundary label should say 'no sandbox'");
+  need(q('[data-act=cond][data-v="no-sandbox"]').getAttribute("aria-pressed") === "true", "no-sandbox button not pressed");
+  const sinkC = qa(".acard").find((c) => c.querySelector(".spill.exposed[aria-label^='No sandbox']") && c.querySelector(".spill.blocked[aria-label^='Recommended']") && /attacker|curl|127|host\.openshell/.test(c.innerText));
+  need(!!sinkC, "no-sandbox: could not find an exfil attack card");
+  if (sinkC) { sinkC.click(); q("#sb-play").click(); await wait(30); await idle("no-sandbox exfil"); need(!!q(".sb-node.reach"), "no-sandbox: nothing reached"); need(/ALLOWED|UNENFORCED/.test(q("#sb-log").textContent), "no-sandbox: log lacks ALLOWED/UNENFORCED"); need(!!q(".sb-node.reach .sb-open"), "no-sandbox: no open lock on the reached node"); }
+  const unenfC = qa(".acard").find((c) => /(GET|POST) [a-z0-9.-]+\.(com|net)/.test(c.innerText));
+  need(!!unenfC, "no-sandbox: could not find an unknown-host attack card");
+  if (unenfC) { unenfC.click(); q("#sb-play").click(); await wait(30); await idle("no-sandbox unknown host"); need(/UNENFORCED[^\n]*doesn't exist — nothing stopped it/.test(q("#sb-log").textContent), "no-sandbox: unenforced note missing: " + q("#sb-log").textContent.slice(-200)); }
+  const chkC = qa(".acard").find((c) => c.querySelector(".chip.chk"));
+  need(!!chkC, "token check card (SECRET-1) missing");
+  if (chkC) {
+    chkC.click(); q("#sb-play").click(); await wait(30); await idle("token check, no sandbox");
+    need(/ALLOWED check: is the real tool token readable/.test(q("#sb-log").textContent), "token check under no sandbox should be readable");
+    need(!q("#sb-standin").hidden && /deployment check/.test(q("#sb-standin").textContent), "token check label missing");
+    q('[data-act=cond][data-v="least-privilege"]').click(); await wait(20);
+    qa(".acard").find((c) => c.querySelector(".chip.chk")).click(); q("#sb-play").click(); await wait(30); await idle("token check, recommended");
+    need(/DENIED/.test(q("#sb-log").textContent) && q('[data-node="tool_token"]').classList.contains("locked"), "token check under recommended should be denied with a padlock on the token");
+  }
+
+  // animation check (recommended)
+  qa("#pipeline [data-act=sel]")[3].click(); await wait(20);
+  qa("#subtabs [data-act=tab]")[2].click(); await wait(20);
+  await setSel("sb-speed", "16");
+  q('[data-act=cond][data-v="least-privilege"]').click(); await wait(20);
+  const pick = (cls) => qa(".acard").find((c) => c.querySelector(`.spill.${cls}[aria-label^=Recommended]`));
+  const blockedC = pick("blocked"), exposedC = pick("exposed"), gapC = pick("gap");
+  need(blockedC && exposedC && gapC, "could not find blocked / exposed / gap attack cards");
+  if (blockedC) { blockedC.click(); q("#sb-play").click(); await wait(30); await idle("blocked attack"); need(!!q(".sb-flock"), "no boundary lock after a denied attack"); need(/DENIED/.test(q("#sb-log").textContent), "log shows no DENIED"); need(!!q(".sb-tag.deny"), "no DENIED tag"); }
+  if (exposedC) { exposedC.click(); q("#sb-play").click(); await wait(30); await idle("exposed attack"); need(!!q(".sb-node.reach"), "no node flagged reached"); need(/ALLOWED/.test(q("#sb-log").textContent), "log shows no ALLOWED"); }
+  if (gapC) { gapC.click(); q("#sb-play").click(); await wait(30); await idle("gap attack"); need(!!q(".sb-tag.gap"), "no content-only bubble"); }
+  // OpenShell default: everything denied, good actions broken
+  q('[data-act=cond][data-v="openshell-default"]').click(); await wait(20);
+  q("#sb-ben").click(); await wait(30); await idle("good actions, default");
+  need(+q("#sb-counters .ctr.ben strong").textContent === 0 && /DENIED/.test(q("#sb-log").textContent), "default: good actions should all be denied (0/9)");
+  need(!!q(".sb-node.broken") && q("#sb-agent").classList.contains("locked"), "default: broken good action / locked agent not shown");
+  // the stand-in: no sandbox reads the file, recommended denies it
+  const standinC = qa(".acard").find((c) => /stand-in/.test(c.innerText));
+  need(!!standinC, "stand-in attack card missing");
+  if (standinC) {
+    q('[data-act=cond][data-v="no-sandbox"]').click(); await wait(20);
+    qa(".acard").find((c) => /stand-in/.test(c.innerText)).click(); q("#sb-play").click(); await wait(30); await idle("stand-in no sandbox");
+    need(/ALLOWED read_file \/sandbox\/shared\/customers-export\.csv/.test(q("#sb-log").textContent), "stand-in with no sandbox should be allowed");
+    need(!q("#sb-standin").hidden && /not from ASAGO run 4/.test(q("#sb-standin").textContent), "stand-in label missing in the probe view");
+    q('[data-act=cond][data-v="least-privilege"]').click(); await wait(20);
+    qa(".acard").find((c) => /stand-in/.test(c.innerText)).click(); q("#sb-play").click(); await wait(30); await idle("stand-in recommended");
+    need(/DENIED/.test(q("#sb-log").textContent), "stand-in under recommended should be denied");
+  }
+  q("#sb-ben").click(); await wait(30); await idle("good actions");
+  need(+q("#sb-counters .ctr.ben strong").textContent === 9, "good actions allowed counter should be 9");
+  await setSel("sb-threat", "T15"); q("#sb-all").click(); await wait(30); await idle("play all T15");
+  need(+q("#sb-counters .ctr.blocked strong").textContent === 1, "play-all counters wrong for T15");
+  await setSel("sb-threat", "");
+  q("#sb-all").click(); await wait(30); await idle("play all");
+  const c = (k) => +q(`#sb-counters .ctr.${k} strong`).textContent;
+  info.play_all = { exposed: c("exposed"), blocked: c("blocked"), gap: c("gap") };
+  need(c("exposed") === 50 && c("blocked") === 17 && c("gap") === 6, `play-all totals ${JSON.stringify(info.play_all)} differ from summary (50 exposed / 17 blocked / 6 text-only)`);
+  checkText("after animations");
+
+  // guided demo: record every caption so the stand-in step is verified
+  const caps = new Set();
+  const obs = new w.MutationObserver(() => caps.add(q("#sb-story-bar").textContent));
+  obs.observe(q("#sb-story-bar"), { childList: true, characterData: true, subtree: true, attributes: true });
+  q("#sb-story").click(); await wait(100); await idle("guided demo");
+  obs.disconnect();
+  need(/complete/.test(q("#sb-story-bar").textContent), "guided demo did not finish: " + q("#sb-story-bar").textContent);
+  const capList = [...caps];
+  need(capList.some((x) => /Step 3 of 6/.test(x) && /unrelated customer file/.test(x) && /No sandbox/.test(x)) && capList.some((x) => /Step 3 of 6/.test(x) && /Recommended/.test(x) && /denied/.test(x)), "guided demo lacks the stand-in file-read step under both conditions");
+  need(capList.some((x) => /Step 2 of 6/.test(x) && /OpenShell default/.test(x) && /everything denied/.test(x) && /\(0\/9\)/.test(x)), "guided demo should have 6 steps incl. the OpenShell default step");
+  need(capList.some((x) => /Step 4 of 6/.test(x) && /real tool token/.test(x) && /No sandbox/.test(x)) && capList.some((x) => /Step 4 of 6/.test(x) && /Recommended/.test(x) && /placeholder/.test(x)), "guided demo lacks the token check before and after");
+  need(capList.some((x) => /attacker's server/.test(x) && /No sandbox/.test(x)) && capList.some((x) => /guardrails/.test(x)), "guided demo lacks the exfil-before step or the guardrails step");
+
+  // theme and reset
+  const dark0 = d.documentElement.classList.contains("pf-v6-theme-dark");
+  q("#theme").click(); await wait(20);
+  need(d.documentElement.classList.contains("pf-v6-theme-dark") !== dark0, "theme did not toggle");
+  q("#theme").click(); await wait(20);
+  q("#desc-open").click(); await wait(20); need(q("#desc-body").textContent.length > 500, "use case dialog empty"); q("#desc-close").click();
+  q("#reset").click(); await wait(50);
+  need(qa("#pipeline .stage[data-status=pending]").length === 4, "reset did not clear stages");
+
+  const uniq = [...new Set(problems)];
+  out.textContent = "CHECK-RESULT " + JSON.stringify({ views: views.length, js_errors: [...new Set(errors)], problems: uniq.length, problem_samples: uniq.slice(0, 25), info }, null, 1);
+}
+main().catch((e) => (out.textContent = "CHECK-RESULT " + JSON.stringify({ harness_error: String(e && e.stack || e) })));
+</script>
+</body>
+</html>

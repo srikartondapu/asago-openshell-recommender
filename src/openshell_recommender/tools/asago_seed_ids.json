@@ -1,0 +1,656 @@
+{
+  "ACC-001": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-002": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-003": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-004": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-005": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-006": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-007": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-008": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-009": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-010": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "account"
+  },
+  "ACC-8822": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 4,
+    "type_guess": "account"
+  },
+  "CUST-7721": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "customer"
+  },
+  "KL-0001": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 5,
+    "type_guess": "order"
+  },
+  "KL-001": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 5,
+    "type_guess": "order"
+  },
+  "KL-1005": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 9,
+    "type_guess": "order"
+  },
+  "KL-105": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 6,
+    "type_guess": "order"
+  },
+  "KL-4402": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 8,
+    "type_guess": "order"
+  },
+  "KL-55001": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 3,
+    "type_guess": "order"
+  },
+  "KL-5544": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 7,
+    "type_guess": "order"
+  },
+  "KL-88102": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 6,
+    "type_guess": "order"
+  },
+  "KL-885": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 7,
+    "type_guess": "order"
+  },
+  "KL-992": {
+    "artifacts": 15,
+    "details": {
+      "amount": 150.0,
+      "currency": "USD",
+      "date": "2024-10-12",
+      "items": [
+        {
+          "name": "T-Shirt",
+          "price": 45.0
+        }
+      ],
+      "merchant": "Global Electronics",
+      "status": "completed",
+      "tool_records": [
+        {
+          "amount": 150.0,
+          "merchant": "Global Electronics",
+          "order_id": "KL-992",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "date": "2024-10-12",
+          "merchant": "FashionCo",
+          "order_id": "KL-992",
+          "status": "completed"
+        },
+        {
+          "amount": 1250.0,
+          "date": "2025-05-10",
+          "merchant": "TechGiant Store",
+          "order_id": "KL-992",
+          "status": "Delivered"
+        },
+        {
+          "merchant": "FashionCo",
+          "order_id": "KL-992",
+          "status": "completed",
+          "total_amount": 45.0
+        },
+        {
+          "amount": 150.0,
+          "merchant": "FashionCo",
+          "order_id": "KL-992",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-992",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "merchant": "TechGadgets Inc",
+          "order_id": "KL-992",
+          "status": "delivered"
+        },
+        {
+          "merchant": "FashionCo",
+          "order_id": "KL-992",
+          "status": "completed",
+          "total_price": 45.0
+        },
+        {
+          "currency": "USD",
+          "merchant": "TechGadgets Inc",
+          "order_id": "KL-992",
+          "status": "completed",
+          "total_amount": 45.0
+        },
+        {
+          "merchant": "TechGear",
+          "order_id": "KL-992",
+          "status": "completed",
+          "total_amount": 45.0
+        },
+        {
+          "date": "2025-10-12",
+          "merchant": "TechGear",
+          "order_id": "KL-992",
+          "status": "completed",
+          "total_amount": 45.0
+        },
+        {
+          "items": [
+            {
+              "name": "T-Shirt",
+              "price": 45.0
+            }
+          ],
+          "merchant": "FashionCo",
+          "order_id": "KL-992",
+          "status": "completed",
+          "total_amount": 45.0
+        },
+        {
+          "amount": 150.0,
+          "merchant": "TechStore",
+          "order_id": "KL-992",
+          "status": "delivered"
+        }
+      ]
+    },
+    "mentions": 64,
+    "type_guess": "order"
+  },
+  "KL-9921": {
+    "artifacts": 1,
+    "details": {
+      "amount": 150.0,
+      "date": "2025-05-10",
+      "merchant": "TechStore",
+      "status": "completed",
+      "tool_records": [
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-9921",
+          "status": "completed"
+        }
+      ]
+    },
+    "mentions": 2,
+    "type_guess": "order"
+  },
+  "KL-9928": {
+    "artifacts": 16,
+    "details": {
+      "amount": 150.0,
+      "customer_id": "KL-9928",
+      "date": "2025-05-10",
+      "items": [
+        "Wireless Mouse"
+      ],
+      "merchant": "TechGear",
+      "status": "completed",
+      "tool_records": [
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechGear",
+          "order_id": "KL-9928",
+          "status": "completed"
+        },
+        {
+          "customer_id": "KL-9928",
+          "email": "user@example.com",
+          "payment_methods": [
+            {
+              "last4": "4422",
+              "type": "visa"
+            }
+          ],
+          "status": "active"
+        },
+        {
+          "items": [
+            "Wireless Mouse"
+          ],
+          "merchant": "TechGear Store",
+          "order_id": "KL-9928",
+          "status": "delivered",
+          "total_amount": 45.0
+        },
+        {
+          "date": "2024-10-12",
+          "merchant": "TechStore",
+          "order_id": "KL-9928",
+          "status": "Shipped",
+          "total": 150.0
+        },
+        {
+          "balance": "$0.00",
+          "customer_id": "KL-9928",
+          "email": "user@example.com",
+          "payment_method": "Visa ****4421",
+          "status": "active"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechGear Co",
+          "order_id": "KL-9928",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "Global Goods",
+          "order_id": "KL-9928",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-9928",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechGadgets Inc",
+          "order_id": "KL-9928",
+          "status": "completed"
+        },
+        {
+          "balance": "$142.50",
+          "customer_id": "KL-9928",
+          "email": "user@example.com",
+          "payment_method": "Visa ****4421",
+          "status": "active"
+        },
+        {
+          "date": "2024-10-12",
+          "merchant": "TechStore",
+          "order_id": "KL-9928",
+          "status": "Delivered",
+          "total": 150.0
+        },
+        {
+          "merchant": "TechStore",
+          "order_id": "KL-9928",
+          "status": "delivered",
+          "total": 150.0
+        },
+        {
+          "date": "2024-10-12",
+          "merchant": "TechWorld",
+          "order_id": "KL-9928",
+          "status": "Delivered",
+          "total": 150.0
+        },
+        {
+          "amount": 150.0,
+          "date": "2024-10-12",
+          "merchant": "FashionCo",
+          "order_id": "KL-9928",
+          "status": "completed"
+        },
+        {
+          "items": [
+            {
+              "name": "USB-C Cable",
+              "price": 45.0
+            }
+          ],
+          "merchant": "TechGear",
+          "order_id": "KL-9928",
+          "status": "completed",
+          "total_amount": 45.0
+        }
+      ]
+    },
+    "mentions": 63,
+    "type_guess": "order"
+  },
+  "KL-99283": {
+    "artifacts": 28,
+    "details": {
+      "amount": 150.0,
+      "date": "2025-10-12",
+      "item": "Wireless Headphones",
+      "items": [
+        "USB-C Cable"
+      ],
+      "merchant": "TechStore",
+      "status": "completed",
+      "tool_records": [
+        {
+          "amount": 150.0,
+          "date": "2025-10-12",
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "FashionCo",
+          "order_id": "KL-99283",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "merchant": "FashionCo",
+          "order_id": "KL-99283",
+          "status": "completed"
+        },
+        {
+          "amount": 120.5,
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "delivered"
+        },
+        {
+          "amount": 150.0,
+          "date": "2024-10-12",
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "delivered"
+        },
+        {
+          "items": [
+            "USB-C Cable"
+          ],
+          "merchant": "TechGear",
+          "order_id": "KL-99283",
+          "status": "Delivered",
+          "total_amount": 45.0
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "completed"
+        },
+        {
+          "account_id": "KL-99283",
+          "email": "user@example.com",
+          "payment_methods": [
+            {
+              "last4": "4242",
+              "type": "visa"
+            }
+          ],
+          "status": "active"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechGear Co",
+          "order_id": "KL-99283",
+          "status": "delivered"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "delivered"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-10-12",
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "Delivered"
+        },
+        {
+          "merchant": "Luxury Watches Co",
+          "order_id": "KL-99283",
+          "status": "completed",
+          "total_amount": 1200.0
+        },
+        {
+          "amount": 129.99,
+          "date": "2024-10-12",
+          "item": "Wireless Headphones",
+          "order_id": "KL-99283",
+          "status": "shipped"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "Global Electronics",
+          "order_id": "KL-99283",
+          "status": "completed"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "Delivered"
+        },
+        {
+          "amount": 125.5,
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "Delivered"
+        },
+        {
+          "amount": 1250.0,
+          "date": "2024-10-12",
+          "merchant": "TechGiant",
+          "order_id": "KL-99283",
+          "status": "Delivered"
+        },
+        {
+          "amount": 150.0,
+          "date": "2024-10-12",
+          "merchant": "TechStore",
+          "order_id": "KL-99283",
+          "status": "Delivered"
+        },
+        {
+          "amount": 150.0,
+          "merchant": "TechStore Inc",
+          "order_id": "KL-99283",
+          "status": "Delivered"
+        },
+        {
+          "items": [
+            "Pro Tablet"
+          ],
+          "merchant": "TechGadgets Inc",
+          "order_id": "KL-99283",
+          "status": "delivered",
+          "total": "$1,250.00"
+        },
+        {
+          "items": [
+            {
+              "name": "USB-C Cable",
+              "price": 45.0
+            }
+          ],
+          "merchant": "TechGear",
+          "order_id": "KL-99283",
+          "status": "completed",
+          "total_amount": 45.0
+        }
+      ]
+    },
+    "mentions": 133,
+    "type_guess": "order"
+  },
+  "KL-9982": {
+    "artifacts": 2,
+    "details": {
+      "amount": 150.0,
+      "items": [
+        {
+          "name": "Wireless Mouse",
+          "price": 45.0
+        }
+      ],
+      "merchant": "TechGear Co",
+      "status": "Delivered",
+      "tool_records": [
+        {
+          "items": [
+            {
+              "name": "Wireless Mouse",
+              "price": 45.0
+            }
+          ],
+          "merchant": "TechGear Co",
+          "order_id": "KL-9982",
+          "status": "Delivered",
+          "total_amount": 45.0
+        },
+        {
+          "amount": 150.0,
+          "merchant": "TechStore",
+          "order_id": "KL-9982",
+          "status": "Delivered"
+        }
+      ]
+    },
+    "mentions": 9,
+    "type_guess": "order"
+  },
+  "KL-9988": {
+    "artifacts": 1,
+    "details": {
+      "amount": 150.0,
+      "date": "2025-05-10",
+      "merchant": "TechStore",
+      "status": "completed",
+      "tool_records": [
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-9988",
+          "status": "completed"
+        }
+      ]
+    },
+    "mentions": 2,
+    "type_guess": "order"
+  },
+  "KL-998877": {
+    "artifacts": 2,
+    "details": {
+      "amount": 150.0,
+      "date": "2024-10-12",
+      "merchant": "TechStore",
+      "status": "Delivered",
+      "tool_records": [
+        {
+          "amount": 150.0,
+          "date": "2024-10-12",
+          "merchant": "TechStore",
+          "order_id": "KL-998877",
+          "status": "Delivered"
+        },
+        {
+          "amount": 150.0,
+          "date": "2025-05-10",
+          "merchant": "TechStore",
+          "order_id": "KL-998877",
+          "status": "completed"
+        }
+      ]
+    },
+    "mentions": 14,
+    "type_guess": "order"
+  },
+  "MG-882": {
+    "artifacts": 1,
+    "details": {},
+    "mentions": 1,
+    "type_guess": "merchant_group"
+  }
+}

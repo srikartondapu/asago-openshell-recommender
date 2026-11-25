@@ -1,0 +1,5 @@
+{
+  "image": "localhost/mini-agents-sandbox:lab",
+  "token_mode": "env",
+  "providers": []
+}

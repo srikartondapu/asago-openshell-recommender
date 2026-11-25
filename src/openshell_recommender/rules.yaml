@@ -1,0 +1,28 @@
+# Effect vocabulary and policy rule names used by the recommender (tagger.py, demo generator).
+# Policy settings themselves are hardcoded in compile.py; lab paths and endpoints are in lab.yaml.
+
+effects:
+  call_undeclared_tool:        Calls an MCP tool the variant does not declare
+  call_declared_tool_bad_args: Calls a declared tool with harmful arguments
+  egress_unknown_host:         Connects to a host or port that is not declared
+  egress_undeclared_method:    Uses an HTTP method or path that is not declared on a declared host
+  data_in_outbound_payload:    Puts sensitive data in an outgoing request
+  fs_read_undeclared:          Reads a file outside declared paths
+  fs_write_outside_workspace:  Writes outside the declared workspace
+  exec_spawned_network:        A program the agent starts (e.g. curl) makes network calls
+  exec_local_command:          Runs a shell command in the sandbox (no network)
+  secret_disclosure:           Reveals a credential
+  harmful_output_only:         Harm is only in the reply text
+
+# Effects no policy rule can block; reported as gaps for the guardrails recommender.
+gap_effects: [call_declared_tool_bad_args, harmful_output_only, exec_local_command]
+
+# Policy rule names and the effects each blocks (only rules that block something are listed).
+rules:
+  - {id: egress.declared_hosts_only,      blocks: [egress_unknown_host, data_in_outbound_payload]}
+  - {id: egress.binary_scoped,            blocks: [exec_spawned_network]}
+  - {id: http.declared_methods_paths,     blocks: [egress_undeclared_method, data_in_outbound_payload]}
+  - {id: mcp.tool_allowlist,              blocks: [call_undeclared_tool]}
+  - {id: fs.workspace_only_writes,        blocks: [fs_write_outside_workspace]}
+  - {id: fs.no_undeclared_reads,          blocks: [fs_read_undeclared]}
+  - {id: secrets.provider_injection,      blocks: [secret_disclosure]}
