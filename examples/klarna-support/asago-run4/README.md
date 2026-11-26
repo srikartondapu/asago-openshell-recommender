@@ -26,4 +26,7 @@
 - `scenarios/`: copy of asago-inputs/scenarios/<timestamp>/ (includes run-manifest.yaml, mode 600 preserved)
 - `artifacts/`: copy of asago-inputs/artifacts/<timestamp>/
 - `logs/`: 71 per-scenario artifact logs, plus step4.out, scenarios.log and artifacts.log. Those three were overwritten by each run, so they reflect run 4.
-- `recommender/real-merged-r2-r3-r4/`: copy of recommender/out/real/ (merged R2+R3+R4 tags/selection/by-threat.csv for readonly and refunds).
+- `recommender/run4-only/`: tagger output for run 4 (tags.json per variant), read by `test` to build the bundle.
+- `probe/full/`: measured probe results per variant and condition (the reference run), read by the demo build.
+- `replay/conditions/`: policy inputs per variant and condition; `test` copies the OpenShell default condition from here.
+- `recommendation/`: the reference bundle (validation.md, gaps.json, tests.json, policy-diff.md) that a fresh `test` must match.

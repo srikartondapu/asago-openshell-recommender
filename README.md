@@ -11,7 +11,7 @@ lab/                         local OpenShell lab (environment for `test`): gatew
 examples/klarna-support/     inputs/, asago-run4/ (pipeline results), asago-inputs/, standin-fs-read/, policy-mapper/
 demo/                        static demo site, demo/generator builds demo/data
 docs/                        design notes, overview, before/after comparison
-scripts/                     build-demo.sh, check-demo.sh, recommend.sh
+scripts/                     build-demo.sh, check-demo.sh (+ check.html), used by `demo build` / `demo check`
 output/                      one directory per run: output/<run-id>/ (created by recommend and test; gitignored)
 out/                         logs from `demo build` and `demo check` (gitignored)
 ```
