@@ -886,7 +886,7 @@ def build_snapshot(run: Path, policy_path: Path) -> dict:
                 "Threat names and coverage: generator/threats.yaml (OWASP Agentic list, hand-maintained).",
                 f"Scenario run: exhaustive generation, no per-pattern cap, max_scenario_techniques 1, "
                 f"71 scenarios (73 items probed with the stand-in and the token check). Qualification: 115 qualified, 71 admitted, 44 quarantined.",
-                "Local demo only. Not published.",
+                "Proof of concept shared for review.",
             ],
         },
         "use_case": build_use_case(PROJECT_DIR, manifests),
@@ -966,6 +966,18 @@ def main(argv: list[str] | None = None) -> int:
     snap = build_snapshot(run, policy_path)
     out = a.out.resolve()
     out.mkdir(parents=True, exist_ok=True)
+    # keep the old "generated" timestamp when nothing else changed, so a rebuild leaves the committed files clean
+    prev_path = out / "snapshot.json"
+    if prev_path.exists():
+        try:
+            prev = json.loads(prev_path.read_text(encoding="utf-8"))
+            old_ts = prev.get("meta", {}).get("generated")
+            cur = json.loads(json.dumps(snap, ensure_ascii=False))  # normalise tuples etc. to JSON types
+            prev["meta"]["generated"] = cur["meta"]["generated"] = None
+            if old_ts and prev == cur:
+                snap["meta"]["generated"] = old_ts
+        except (ValueError, KeyError, TypeError):
+            pass
     text = json.dumps(snap, indent=1, ensure_ascii=False) + "\n"
     (out / "snapshot.json").write_text(text, encoding="utf-8")
     (out / "snapshot.js").write_text("window.OS_SNAPSHOT = " + text.rstrip("\n") + ";\n", encoding="utf-8")

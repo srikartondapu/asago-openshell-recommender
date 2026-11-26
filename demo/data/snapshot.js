@@ -1,6 +1,6 @@
 window.OS_SNAPSHOT = {
  "meta": {
-  "generated": "2026-11-25T18:04:44+00:00",
+  "generated": "2026-11-26T04:30:12+00:00",
   "run": "run4-fsisac-allthreats-nocap",
   "openshell": "0.1.8",
   "models": {
@@ -15,7 +15,7 @@ window.OS_SNAPSHOT = {
    "Attack-level outcomes mirror src/openshell_recommender/probe.py attack_outcome. attacks_exposed and by_threat.exposed count exposed plus partial (some action allowed).",
    "Threat names and coverage: generator/threats.yaml (OWASP Agentic list, hand-maintained).",
    "Scenario run: exhaustive generation, no per-pattern cap, max_scenario_techniques 1, 71 scenarios (73 items probed with the stand-in and the token check). Qualification: 115 qualified, 71 admitted, 44 quarantined.",
-   "Local demo only. Not published."
+   "Proof of concept shared for review."
   ]
  },
  "use_case": {

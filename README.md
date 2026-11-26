@@ -31,7 +31,7 @@ brew install uv                                  # Python runner (or: curl -LsSf
 #   Google Chrome: needed only for `demo check`
 
 uv run asago-openshell-recommender doctor        # 1. ✓/✗ table of prerequisites and lab state; exit 1 if one is missing
-uv run asago-openshell-recommender lab setup     # 2. builds 2 images (~4 min the first time); creates lab/run/tool-token (chmod 600)
+uv run asago-openshell-recommender lab setup     # 2. builds 2 images (~7 GB; first build is download-bound, ~1 min when cached); creates lab/run/tool-token (chmod 600)
 uv run asago-openshell-recommender lab up        # 3. starts the gateway, mock services and tool server in the background
 uv run asago-openshell-recommender recommend --run-id e2e                    # 4. writes output/e2e/policy.yaml and prove.md
 uv run asago-openshell-recommender test --run-dir output/e2e                 # 5. ~5 min: sandbox-backed conditions ~2 min each, OpenShell default ~10 s (the agent can't start under it)
@@ -101,6 +101,7 @@ Images: `localhost/mini-agents-sandbox:asago` (base sandbox, built from `lab/age
 uv run asago-openshell-recommender demo build    # regenerates demo/data from the run4 outputs; log in out/logs/demo-build.log
 uv run asago-openshell-recommender demo check    # clicks through the demo in headless Chrome; log in out/logs/demo-check.log
 uv run asago-openshell-recommender demo serve    # serves the demo at http://127.0.0.1:8080/ (Ctrl-C to stop)
+                                                 # port busy? add --port 8081
 ```
 
 `demo build` and `demo check` write their logs under `out/` (gitignored). `demo check` uses headless Chrome, so it needs Google Chrome installed (or `CHROME=/path/to/chrome`).
