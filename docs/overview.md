@@ -4,7 +4,7 @@
 
 ## The one-line version
 
-ASAGO's NeMo recommender answers "which guardrails should check what this agent says?" The OpenShell recommender answers a different question: **"which sandbox rules should limit what this agent can do?"** We then check the answer by running the same attacks against the sandboxed agent and counting how many are stopped.
+ASAGO's NeMo recommender answers "which guardrails should check what this agent says?" The OpenShell recommender answers a different question: **"which sandbox rules should limit what this agent can do?"** We then check the answer by running each attack's actions inside the sandboxed agent and counting how many are stopped.
 
 ## Why a second recommender
 
@@ -40,23 +40,23 @@ We recommend **least privilege, compiled from the agent manifest.**
 
 ## How it links to the ASAGO pipeline
 
-The recommender uses outputs ASAGO already produces. Only the replay at the end is new.
+The recommender is a new last stage. It reads outputs ASAGO already produces.
 
 ```
- policy-mapper output ──► scenario generator ──► artifact generator ──► OpenShell recommender ──► replay on live sandbox
- (risks for a policy)     + capability profile     (multi-turn attacks)   + agent manifest          (baseline vs recommended)
-                          (threats_path: sandbox-
-                           relevant threats only)
+ policy-mapper output ──► scenario generator ──► artifact generator ──► OpenShell recommender
+ (risks for a policy)     + capability profile     (attack artifacts)     recommend: manifest ──► policy.yaml ──► prover
+                                                                          test:      attacks ──► probe actions ──► real sandbox
 ```
 
-1. **Risks.** Pick one of the existing policy-mapper outputs that fits the use case, the same way the guardrails recommender demo does with its mock use case. Its risks are the scenario generator's input.
-2. **Capability profile = agent manifest.** We extend the Klarna capability profile (`tool_inventory`, `external_integrations`, `trust_boundaries`) with sandbox fields: the hosts, paths and binaries each tool uses. The same file feeds the scenario generator and the recommender.
-3. **Threats.** The scenario generator uses the OWASP agentic threat catalog (T1–T17). The threats in scope come from the profile; a `threats_path` file narrows them to the ones a sandbox can address (table below). Each scenario carries its `threat_id` and an attack narrative.
-4. **Attacks.** The artifact generator turns each scenario into a multi-turn attack. Each attack is marked with where the malicious content enters: `user_turn`, `tool_return` (an indirect injection hidden in a tool result) or `system_prompt`. Attacks link back to their threat through `scenario_id`.
-5. **Recommendation.** The recommender tags each attack with effects, using the tool calls in its turns and the narrative. The policy is always least privilege; the tags feed the rationale and gaps.
-6. **Replay.** Unlike the NeMo baseline, the attack has to run against the **live** agent, because a sandbox can only block actions that actually happen. The harness plays the user turns into the sandboxed agent and loads any `tool_return` payload into the mock tool that returns it. It judges the outcome by evidence: refund ledger, attacker sink, OpenShell denials. The artifact's judge rubric stays available as a secondary signal.
+1. **Risks.** An existing policy-mapper output (FS-ISAC GenAI policy) is the scenario generator's input, the same way the guardrails recommender demo uses its mock use case.
+2. **Capability profile and agent manifest.** The Klarna capability profile (`tool_inventory`, `external_integrations`, `trust_boundaries`) feeds the scenario generator. The sandbox manifest (`examples/klarna-support/inputs/sandbox-manifest-*.yaml`) adds what the sandbox needs: hosts, paths, binaries and tools. ASAGO outputs can fill in the tool list, but not the deployment facts (hosts, paths, binaries), so the manifest is written by hand.
+3. **Threats and attacks.** The scenario generator covers the OWASP agentic threats (T1–T17). The artifact generator turns each admitted scenario into an attack, linked back to its threat through `scenario_id`. Run 4 gave 71 scenarios.
+4. **`recommend`.** `compile.py` turns the manifest into a least-privilege policy, and `prove.py` checks it with NVIDIA's openshell-prover (the good tasks must be allowed and the bad actions denied, on paper).
+5. **`test`.** `tagger.py` maps each attack to effects and concrete actions (fetch this host, call this tool, read this file). `probe.py` deploys a real OpenShell sandbox and runs those actions with the agent's own programs, under three conditions: no sandbox, the OpenShell default and the recommended policy. Each action is judged allowed or denied from evidence: the OpenShell log, an HTTP 403 or an OS permission error. `bundle.py` writes `validation.md`, `gaps.json`, `tests.json` and `policy-diff.md`.
 
-The scenario and artifact generators run on the cluster with the cluster models. Their outputs are copied locally, and the recommender and replay run on the laptop.
+The probes run the attack's *actions* directly; they don't play the conversation through the LLM. That makes the result deterministic and tests the sandbox, not the model. Whether the model would have been talked into the action is the guardrails recommender's question.
+
+The scenario and artifact generators ran on the cluster. Their outputs ship in `examples/klarna-support/asago-run4/`, and everything in this repo runs on a laptop.
 
 ### Which threats a sandbox can address
 
@@ -73,22 +73,25 @@ The scenario and artifact generators run on the cluster with the cluster models.
 
 Within an addressable threat, some attacks are still gaps. "Refund 10× the order amount" uses a tool the agent is allowed to call. OpenShell can match the MCP tool name but not its arguments, so it can't tell that refund apart from a normal one.
 
-## How we prove it works (same approach as NeMo)
+## How we prove it works
 
-For each test agent, we run each attack set two or three ways:
+`test` runs the same actions under three conditions:
 
-| Setup | What it shows |
+| Condition | What it shows |
 |---|---|
-| **Baseline**: sandbox with a permissive policy | How many attacks succeed with no restrictions |
-| **Recommended policy** | How many attacks are **blocked** |
-| Recommended policy + normal tasks | How many **legitimate tasks break** (cost to usefulness) |
+| **No sandbox**: the same agent image in a plain Podman container | How many attack actions get through with nothing in the way |
+| **OpenShell default**: a sandbox created with no policy | What OpenShell does on its own |
+| **Recommended policy** | How many attack actions are **denied**, and whether the 9 good tasks still work |
 
-We judge "blocked" by what actually happened, not by what the model said:
+Run 4 results (the reference `validation.md`):
 
-- OpenShell's denial logs (for example, connection to attacker host refused, or a write to a forbidden path refused).
-- A **mock backend ledger**: did the refund happen, did the attacker host receive any data?
+| | No sandbox | OpenShell default | Recommended |
+|---|---|---|---|
+| Good tasks allowed | 9/9 | 0/9 | 9/9 |
+| Bad actions denied | 2/78 | 72/78 | 22/78 |
+| Attacks fully blocked | 1/73 | 67/73 | 17/73 |
 
-The final report gives, per agent: attacks blocked, legitimate tasks broken, and gaps passed on to other recommenders.
+The OpenShell default blocks almost everything because the agent can't even start under it, so it's unusable. The recommended policy keeps all the good tasks working and blocks 17 attacks. The 50 that get through use tools and hosts the agent legitimately needs (for example a refund above the order amount). Those are reported in `gaps.json` for the guardrails recommender. 6 attacks are text-only, with no action for a sandbox to block.
 
 ## Test subjects
 
@@ -123,9 +126,7 @@ A Klarna support agent (read-only variant) needs `lookup_order`, `get_account_de
 
 ## Where it runs
 
-- **Locally first (now).** OpenShell runs on the laptop: a local gateway with Podman as the container runtime. The agent's model is `qwen3:8b` in Ollama, and the mock tool server and mock services run on the laptop, all bound to localhost. That gives fast iteration with no dependency on, or risk to, the shared cluster.
-- **ASAGO generators on the cluster.** The scenario and artifact generators use the cluster models. Their outputs are copied locally for the recommender and replay.
-- **Cluster for the final evaluation and demo.** The setup is already scripted with `deploy/up.sh` and `deploy/down.sh`. It runs in its own namespace with network rules that let it reach only the LiteLLM gateway, and namespace-level policies can't override those rules. It has no public endpoint and uses mock data only. Isolation was tested: nothing else on the cluster was reachable.
+Everything runs locally. `lab setup` builds the agent images, and `lab up` starts a local OpenShell gateway (Podman driver) plus the mock tool server and mock services, all bound to localhost. No cluster, no model and no secrets are needed: the probes don't call the LLM, and the tool token is generated locally. The ASAGO generators ran on the cluster earlier, and their outputs ship in `examples/`.
 
 ## Scope
 
@@ -135,13 +136,8 @@ This is a **working prototype**, not a production recommender. We're deliberatel
 - Automatic extraction of agent manifests from code. We write the manifests by hand for now.
 - Fine-grained rules per request body.
 
-## Next steps
+## Findings and next steps
 
-1. ✅ Set up OpenShell locally (Podman driver, Ollama `qwen3:8b`).
-2. ✅ Modify mini-agents: Klarna tool server outside the sandbox, in-sandbox workstation tools (`http_fetch`, `read_file`, `write_file`, `run_command`), mock merchant API with a planted injection, attacker sink, evidence ledger.
-3. ✅ First sandboxed run: a normal customer question answered end to end under a baseline policy, with the evidence visible in OpenShell's audit log and the ledger.
-4. Write the agent manifest by extending the Klarna capability profile with sandbox fields, with read-only and refunds variants.
-5. Run the scenario and artifact generators on the cluster for the sandbox-relevant threats, using an existing policy-mapper output as the risk input.
-6. Build the recommender core: effects vocabulary, rules, tagger.
-7. Build the replay harness, then get baseline vs recommended numbers, including how many legitimate tasks break.
-8. Write the results report, then re-run on the cluster for the demo.
+- **Attack-driven tightening doesn't help on OpenShell 0.1.8.** We tried tightening the policy beyond least privilege to block the local-command attacks. OpenShell always re-adds `/usr` and `/etc` as readable, and it has no allowlist for which programs can run, so there was nothing more to tighten. The attacks' role is to validate the policy and route gaps, with the evidence going to a human.
+- **Manifest generation is partial.** ASAGO outputs can supply the tool list, but not the deployment facts.
+- Possible next steps: add `proposed_restrictions` to `gaps.json`; run ASAGO with richer attacks; port into the ASAGO repo.

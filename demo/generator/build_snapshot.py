@@ -263,7 +263,7 @@ def build_policy_mapper(path: Path) -> dict:
         "source_doc": doc,
         "source_note": clean(
             f"Pre-run policy-mapper output (risk-extraction v{d.get('version')}, "
-            f"model {d.get('metadata', {}).get('model')}) at {rel(path)}, outside this repo. "
+            f"model {d.get('metadata', {}).get('model')}) at {rel(path)} (shipped in this repo). "
             f"The policy mapper was not re-run. Source document: {doc}. "
             f"Mapper eval: precision {ev.get('precision')}, recall {ev.get('recall')}, F1 {ev.get('f1')}."
         ),
