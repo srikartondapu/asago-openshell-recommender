@@ -388,10 +388,10 @@ def llm_config() -> dict:
 def llm_prompt(art: dict, ctx: dict, unresolved: list[str], catalog: dict) -> list[dict]:
     m = ctx["m"]
     eff_lines = "\n".join(f"- {k}: {v}" for k, v in catalog["effects"].items())
-    frag_lines = "\n".join(f"- {f['id']}: blocks {f['blocks']}" for f in catalog["rules"])
+    rule_lines = "\n".join(f"- {f['id']}: blocks {f['blocks']}" for f in catalog["rules"])
     cap_lines = "\n".join(f"- {c['id']} ({c['kind']})" for c in m["capabilities"])
     user = (f"Effects (id: description):\n{eff_lines}\n\n"
-            f"Policy fragments that block effects:\n{frag_lines}\n\n"
+            f"Policy rules that block effects:\n{rule_lines}\n\n"
             f"Manifest capabilities:\n{cap_lines}\n"
             f"Exposed MCP tools: {', '.join(m['exposed']['mcp_tools'])} "
             f"(tools that are not capabilities are undeclared)\n"
@@ -401,7 +401,7 @@ def llm_prompt(art: dict, ctx: dict, unresolved: list[str], catalog: dict) -> li
             '{"effects": [{"id": <effect id>, "evidence": <exact quote copied verbatim from the attack text, '
             'at least 15 characters>}], '
             '"targeted_capabilities": [manifest capability ids, or "undeclared:<name>" for tools not declared], '
-            '"proposed_restrictions": [fragment ids], "residual_risks": [strings]}\n\n'
+            '"proposed_restrictions": [rule ids], "residual_risks": [strings]}\n\n'
             f"ATTACK TEXT:\n<<<\n{art['text']}\n>>>")
     return [{"role": "system", "content": "You map attacks on an LLM agent onto a sandbox policy vocabulary. "
                                           "Reply with a single JSON object and no other text."},

@@ -5,7 +5,7 @@ Prototype recommender that turns an agent's use case and the attacks measured ag
 ## Layout
 
 ```
-src/openshell_recommender/   recommender modules and the `asago-openshell-recommender` CLI (cli.py)
+src/openshell_recommender/   recommender modules and the `asago-openshell-recommender` CLI (cli.py); see Code guide below
 tests/                       regression and unit tests, tests/fixtures
 lab/                         local OpenShell lab (environment for `test`): gateway/turn scripts, lab-image, lab/agent (vendored mini-agents)
 examples/klarna-support/     inputs/, asago-run4/ (pipeline results), asago-inputs/, standin-fs-read/, policy-mapper/
@@ -124,6 +124,24 @@ Defaults: `--manifest` and `--pipeline-results` point at the Klarna support exam
 uv run --with pytest pytest                # unit tests (38)
 uv run python tests/run_regression.py      # tagger regression checks (102)
 ```
+
+## Code guide
+
+The recommender is `src/openshell_recommender/`: nine Python files, about 3,300 lines. Everything else in the repo is example data (`examples/`), the copied mock agent (`lab/agent/`), the demo and tests. Suggested reading order: `compile.py` → `prove.py` → `tagger.py` → `probe.py` → `bundle.py`, with `cli.py` tying them together.
+
+| File | What it does | Main functions |
+|---|---|---|
+| `compile.py` (~120 lines) | Compiles the agent's sandbox manifest into a least-privilege OpenShell policy. Each policy section takes its values from the manifest (what the agent needs) or from `lab.yaml` (what every sandbox needs). Writes `policy.yaml`, `provider-profile.yaml` (token injection for the MCP server) and `runtime.json` (how to create the sandbox). | `compile_policy`, `mcp_rules`, `channels` |
+| `prove.py` (~210) | Static check of the policy with NVIDIA's openshell-prover. Each good or bad test action is encoded as a tiny policy that allows only that action and checked against the recommended policy: inside the boundary means allowed, outside means blocked. MCP tool rules are outside the prover's model and are reported as "not provable" (the sandbox probes cover them). | `tiny_policy`, `test_from_probe`, `run_prover`, `verdict` |
+| `tagger.py` (~650) | Reads each ASAGO attack artifact and maps it to **effects** (contact an unknown host, call an undeclared tool, read a file outside the workspace, and so on) using the rules in `rules.yaml`. It resolves tool names against the manifest. An optional LLM fallback (`--llm`, unused in the runs) only handles attacks the rules couldn't tag, and each LLM effect must quote the attack text verbatim. | `tag_artifact`, `rule_effects`, `resolve_tools`, `llm_check` |
+| `probe.py` (~930) | Turns each tagged attack into concrete actions (fetch this URL, call this MCP tool with these arguments, read this path, run this command), plus the good actions from the manifest. Then deploys a real sandbox, runs the actions with the agent's own programs, and decides allowed or denied from the OpenShell log, HTTP 403s or OS permission errors. `plan`, `run` and `report` subcommands. | `build_scenario_probes`, `benign_probes`, `cmd_run`, `decide`, `attack_outcome` |
+| `probe_runner.py` (~160) | Runs **inside** the sandbox under the same binary the agent uses (`python-ogx` for MCP calls, `python-mcp` for workstation tools), so the policy that applies to the probe is the policy that applies to the agent. Prints one JSON line per action and scrubs the token from all output. | `execute`, `run_mcp`, `run_ws` |
+| `nosandbox.py` (~110) | The "no sandbox" condition: runs the same actions in a plain Podman container (same image, same mock services) with no OpenShell, so there's a before number. | `run_batch` |
+| `bundle.py` (~280) | Writes the evidence: `validation.md` (config + prover + probe results across the three conditions), `gaps.json` (per attack: blocked by which rule, or a residual risk for guardrails), `tests.json` and `policy-diff.md`. | `main`, `attack_outcome` |
+| `cli.py` (~680) | The `asago-openshell-recommender` command: `doctor`, `lab setup/up/down/status`, `recommend` (compile + prove), `test` (probe the three conditions + bundle), `demo build/check/serve`. Calls the modules above. | `cmd_recommend`, `cmd_test`, `cmd_lab_setup`, `cmd_lab_up` |
+| `common.py` (~170) | Shared helpers for the probe runners: run commands, read the token (for redaction only), parse sandbox log lines and classify denials. | `classify_denial`, `load_secret` |
+
+Config next to the code: `rules.yaml` (the effect vocabulary and which policy rule blocks which effect), `lab.yaml` (paths and endpoints every sandbox needs), `deploy.sh` (creates a sandbox from a compiled policy). `tools/extract_asago_ids.py` is a one-off that extracted the IDs used in the mock agent's seed data.
 
 ## Notes
 
