@@ -219,9 +219,16 @@
   function qualifyHTML(c) {
     const d = scnDetail(c), b = c.uc.battery || {};
     const pf = d.rule_prefilter, ep = d.entry_points;
-    return `<div class="pair"><div><strong>${esc(b.attack_patterns_total != null ? b.attack_patterns_total : Data.patternCount(c.uc))}</strong><span>attack patterns</span></div><span class="arrow" aria-hidden="true">→</span><div><strong>${esc(num(d.candidates_attempted))}</strong><span>candidate scenarios</span></div></div>` +
-      metrics([metric(ep ? ep.accessible + " of " + ep.total : "n/a", "attacker-accessible entry points"), metric(pf ? pf.rejected + " of " + pf.candidates : "n/a", "rejected by deterministic rules", true), metric((d.uncovered_attack_patterns || []).length, "patterns left uncovered")]) +
-      '<p class="muted small">Attack patterns are qualified against the use-case profile, then crossed with entry points and techniques to enumerate candidate scenarios. Deterministic rules reject impossible candidates before the LLM sees them.</p>' +
+    const step = (n, label) => `<div><strong>${esc(num(n))}</strong><span>${esc(label)}</span></div>`;
+    const arrow = '<span class="arrow" aria-hidden="true">→</span>';
+    const steps = [step(b.attack_patterns_total != null ? b.attack_patterns_total : Data.patternCount(c.uc), "attack patterns")];
+    if (pf) steps.push(step(pf.candidates, "pattern × entry point × technique combinations"), step(pf.rejected, "rejected by deterministic rules").replace("<strong>", "<strong>−"), step(pf.to_llm, "sent to the LLM qualifier"));
+    steps.push(step(d.candidates_attempted, "qualified candidates"));
+    if (d.admitted != null) steps.push(step(d.admitted, `admitted (${num(d.quarantined)} quarantined)`));
+    const covered = (b.attack_patterns_total != null ? b.attack_patterns_total : Data.patternCount(c.uc)) - (d.uncovered_attack_patterns || []).length;
+    return `<div class="pair funnel">${steps.join(arrow)}</div>` +
+      metrics([metric(ep ? ep.accessible + " of " + ep.total : "n/a", "attacker-accessible entry points"), metric(covered, "patterns covered by admitted scenarios", true), metric((d.uncovered_attack_patterns || []).length, "patterns left uncovered")]) +
+      '<p class="muted small">Each attack pattern is crossed with the attacker-accessible entry points and its techniques. Deterministic rules reject impossible combinations before the LLM sees them; the LLM qualifier keeps the plausible ones, which are then generated and checked by the admission gates. Entry points the attacker cannot influence (system outputs such as the refund backend and human escalation) are not used.</p>' +
       ((d.seeds_without_techniques || []).length ? `<h4 class="sub">Skipped: no technique IDs</h4><div class="chiprow">${chips(d.seeds_without_techniques)}</div>` : "") +
       ((d.uncovered_attack_patterns || []).length ? `<h4 class="sub">Uncovered attack patterns</h4><div class="chiprow">${chips(d.uncovered_attack_patterns)}</div>` : "");
   }
